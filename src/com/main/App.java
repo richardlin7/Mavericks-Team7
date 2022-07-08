@@ -15,6 +15,7 @@ public class App {
 				System.out.println("*****LIBRARY SYSTEM******");
 				System.out.println("1. Log In User");
 				System.out.println("2. Log In Admin");
+				System.out.println("2. Create User Account");
 				System.out.println("0. Exit");
 				int input = sc.nextInt();
 				if(input == 0) {
@@ -39,6 +40,15 @@ public class App {
 					//If Login Successful:
 					state = State.ADMIN;
 					break;
+				case 3:
+					System.out.println("*****ACCOUNT CREATION******");
+					System.out.println("Enter Username");
+					sc.nextLine();
+					userName = sc.nextLine();
+					//TODO: Login Logic
+					//If Login Successful:
+					state = State.USER;
+					break;
 				default:
 					System.out.println("Please Enter Valid Input!");	
 				}
@@ -46,6 +56,8 @@ public class App {
 			case USER:
 				System.out.println("*****USER SYSTEM******");
 				System.out.println("1. Show Books");
+				System.out.println("2. Search Books");
+				System.out.println("3. Checkout Book");
 				System.out.println("0. Log Out");
 				input = sc.nextInt();
 				if(input == 0) {
@@ -55,6 +67,15 @@ public class App {
 				}
 				switch(input) {
 				case 1:
+					System.out.println("1. Show Books");
+					System.out.println("Implement Stuff");
+					break;
+				case 2:
+					System.out.println("2. Search Books");
+					System.out.println("Implement Stuff");
+					break;
+				case 3:
+					System.out.println("3. Checkout Book");
 					System.out.println("Implement Stuff");
 					break;
 				default:
@@ -63,7 +84,12 @@ public class App {
 				break;
 			case ADMIN:
 				System.out.println("*****ADMIN SYSTEM******");
-				System.out.println("1. Show Books");
+				System.out.println("1. Add Book");
+				System.out.println("2. Remove Book");
+				System.out.println("3. Update Book");
+				System.out.println("4. View Users");
+				System.out.println("5. Delete User");
+				System.out.println("6. Create New Admin");
 				System.out.println("0. Log Out");
 				input = sc.nextInt();
 				if(input == 0) {
@@ -73,8 +99,30 @@ public class App {
 				}
 				switch(input) {
 				case 1:
+					System.out.println("1. Add Book");
 					System.out.println("Implement Stuff");
 					break;
+				case 2:
+					System.out.println("2. Remove Book");
+					System.out.println("Implement Stuff");
+					break;
+				case 3:
+					System.out.println("3. Update Book");
+					System.out.println("Implement Stuff");
+					break;
+				case 4:
+					System.out.println("4. View Users");
+					System.out.println("Implement Stuff");
+					break;
+				case 5:
+					System.out.println("5. Delete User");
+					System.out.println("Implement Stuff");
+					break;
+				case 6:
+					System.out.println("6. Create New Admin");
+					System.out.println("Implement Stuff");
+					break;
+					
 				default:
 					System.out.println("Please Enter Valid Input!");	
 				}
