@@ -15,7 +15,7 @@ public class App {
 				System.out.println("*****LIBRARY SYSTEM******");
 				System.out.println("1. Log In User");
 				System.out.println("2. Log In Admin");
-				System.out.println("2. Create User Account");
+				System.out.println("3. Create User Account");
 				System.out.println("0. Exit");
 				int input = sc.nextInt();
 				if(input == 0) {
