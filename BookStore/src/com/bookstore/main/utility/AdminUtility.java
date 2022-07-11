@@ -30,26 +30,32 @@ public class AdminUtility {
 			switch (index) {
 			case 1:
 				System.out.println("***** Add Book *****");
+				//To Do
 
 				break;
 			case 2:
 				System.out.println("2. Remove Book");
+				//To Do
 
 				break;
 			case 3:
 				System.out.println("3. Update Book");
+				//To Do
 
 				break;
 			case 4:
 				System.out.println("4. View Users");
+				//To Do
 
 				break;
 			case 5:
 				System.out.println("5. Delete User");
+				//To Do
 
 				break;
 			case 6:
 				System.out.println("6. Create New Admin");
+				//To Do
 
 				break;
 

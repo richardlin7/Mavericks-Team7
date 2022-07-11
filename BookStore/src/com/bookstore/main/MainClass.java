@@ -180,6 +180,7 @@ public class MainClass {
 				}
 				break;
 
+				
 			// This is a Admin Block
 			case 2:
 
@@ -197,6 +198,7 @@ public class MainClass {
 						System.out.println("Return to Home");
 						break;
 					}
+					
 					// Nested Switch case for Admin
 					switch (admin) {
 					case 1:
@@ -215,6 +217,7 @@ public class MainClass {
 						System.out.println("Enter Username: ");
 						String u_Name = sc.next();
 
+						
 						// Checking if userName Present
 
 						while (true) {
@@ -232,21 +235,23 @@ public class MainClass {
 						System.out.println("Enter Password: ");
 						String password = sc.next();
 
+						
 						// Creating User object to pass the entity
-						// Admin a = new Admin();
+						
 						a.setFirst_name(f_Name);
 						a.setLast_name(l_Name);
 						a.setPhone(p_Num);
 						a.setUsername(u_Name);
 						a.setPassword(password);
 
+						
 						// Creating UserService Object to call the add user methods
-						// AdminService service = new AdminService();
+						
 						adminService.registerAdmin(a);
 
 						String adminId = adminService.getAdminId(a, f_Name, l_Name, u_Name);
 						System.out.println("Admin added Sucessfully. Your Admin Number is : " + adminId);
-						// service.getUserId(u,f_Name,l_Name,u_Name);
+						
 
 						break;
 					case 2:

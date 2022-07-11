@@ -98,7 +98,7 @@ public class AdminService {
 	//Checking is the username is already presence in the database
 	public boolean isAdminNamePresent(Admin a, String u_Name) {
 		boolean isUserNameValid = false;
-		db.dbConnect();
+		db.dbConnect();//db call connect
 		String sql = " select username from admin where username = ? ";
 
 		try {
@@ -118,7 +118,7 @@ public class AdminService {
 			e.printStackTrace();
 		}
 
-		db.dbClose();
+		db.dbClose();//db call close
 		return isUserNameValid;
 	}
 

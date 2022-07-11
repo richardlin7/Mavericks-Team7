@@ -45,10 +45,9 @@ public class UserService {
 			while (res.next()) {
 				userId = res.getString("user_id");
 
-				// System.out.println(userId);
 			}
 
-			// prep.execute();
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
