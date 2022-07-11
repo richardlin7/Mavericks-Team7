@@ -1,10 +1,5 @@
-
-CREATE SCHEMA IF NOT EXISTS `bookstore` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
-USE `bookstore` ;
-
--- -----------------------------------------------------
--- Table `bookstore`.`admin`
--- -----------------------------------------------------
+DROP database if exists bookstore;
+CREATE DATABASE bookstore;
 CREATE TABLE IF NOT EXISTS `bookstore`.`admin` (
   `admin_id` INT NOT NULL AUTO_INCREMENT,
   `first_name` VARCHAR(45) NOT NULL,
@@ -13,9 +8,7 @@ CREATE TABLE IF NOT EXISTS `bookstore`.`admin` (
   `username` VARCHAR(45) NOT NULL,
   `password` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`admin_id`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+AUTO_INCREMENT=10001;
 
 
 -- -----------------------------------------------------
@@ -104,12 +97,12 @@ CREATE TABLE IF NOT EXISTS `bookstore`.`user` (
   `user_id` INT NOT NULL AUTO_INCREMENT,
   `first_name` VARCHAR(45) NOT NULL,
   `last_name` VARCHAR(45) NOT NULL,
-  `username` VARCHAR(45) NOT NULL,
   `phone` VARCHAR(45) NOT NULL,
+  `username` VARCHAR(45) NOT NULL,
   `password` VARCHAR(45) NOT NULL,
-  `userComment` VARCHAR(45) NULL,
-  `userReview` VARCHAR(45) NULL,
-  `user_balance` DOUBLE NOT NULL,
+  `userComment` VARCHAR(45) ,
+  `userReview` VARCHAR(45) ,
+  `user_balance` DOUBLE DEFAULT 0,
   PRIMARY KEY (`user_id`),
   UNIQUE INDEX `user_id_UNIQUE` (`user_id` ASC) )
 AUTO_INCREMENT=1000000124;
@@ -122,10 +115,11 @@ CREATE TABLE IF NOT EXISTS `bookstore`.`borrower_record` (
   `borrower_id` INT NOT NULL AUTO_INCREMENT,
   `issue_date` VARCHAR(45) NOT NULL,
   `due_date` VARCHAR(45) NOT NULL,
-  `status` VARCHAR(45) NOT NULL,
-  `fees` DOUBLE NOT NULL,
+  `fees` DOUBLE default 0,
   `user_id` INT NOT NULL,
   `book_id` INT NOT NULL,
+  `sataus` VARCHAR(45) NOT NULL,
+  
   PRIMARY KEY (`borrower_id`, `user_id`, `book_id`),
   INDEX `fk_borrower_record_user1_idx` (`user_id` ASC) ,
   INDEX `fk_borrower_record_book1_idx` (`book_id` ASC) ,
@@ -138,5 +132,6 @@ CREATE TABLE IF NOT EXISTS `bookstore`.`borrower_record` (
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
+
 
 
