@@ -1,5 +1,6 @@
 package com.bookstore.main.utility;
 
+import java.util.List;
 import java.util.Scanner;
 
 import com.bookstore.main.model.Book;
@@ -38,17 +39,17 @@ public class UserUtility {
 			switch (index) {
 			case 1:
 				System.out.println("***** The Collections of Books *****");
+				System.out.println(" ");
 				
 				// Showing all the books
-				bookService.showAllBooks();
+				List<Book> list = bookService.showAllBooks();
 				
+				for (Book book : list) {
+					
+					System.out.println("Book Name: "+ book.getBook_name()+", Aviliable Copies: "+book.getBook_copies()+ ", Book Status: "+book.getBook_status()+", Listed date: "+book.getListed_date()+".");
+				}
+				System.out.println(" ");
 				
-				
-				
-				
-				
-				
-
 				break;
 			case 2:
 				System.out.println("2. Search Books");

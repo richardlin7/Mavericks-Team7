@@ -16,31 +16,41 @@ public class BookService {
 	//List<Book> list = new ArrayList<>();
 	
 
-//	public void showAllBooks() {
-//		List<Book> list = new ArrayList<>();
-//		db.dbConnect();
-//		String sql = " Select book_name,book_copies,book_status, listed_date from book ";
-//		
-//		try {
-//			PreparedStatement prep = db.conn.prepareStatement(sql);
-//			
-//			ResultSet result = prep.executeQuery();
-//			
-//			while (result.next()) {
-//				//result.getString("book_name");
+	public List<Book> showAllBooks() {
+		//List<String> list = new ArrayList<>();
+		db.dbConnect();
+		String sql = " Select book_name,book_copies,book_status, listed_date from book ";
+		List<Book> list = new ArrayList<>();
+		
+		try {
+			PreparedStatement prep = db.conn.prepareStatement(sql);
+			
+			ResultSet result = prep.executeQuery();
+			
+			while (result.next()) {
+//				String book_name = result.getString();
+//				String book_copies = result.getString("book_copies");
+//				String book_status = result.getString("book_status");
+//				String listed_date = result.getString("listed_date");
 //				
-//				
-//			}
-//			
-//			
-//		} catch (SQLException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		
-//		db.dbClose();
-//		
-//		
-//	}
+//				list=Arrays.asList(book_name,book_copies,book_status,listed_date);
+				
+				list.add(new Book(result.getString("book_name"),
+								result.getInt("book_copies"),
+								result.getString("book_status"),
+								result.getString("listed_date")));
+			}
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		db.dbClose();
+		return list;
+		
+		
+	}
 
 }
