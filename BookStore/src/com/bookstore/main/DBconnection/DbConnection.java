@@ -18,11 +18,13 @@ public class DbConnection {
 			e.printStackTrace();
 		}
 		try {
-			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/bookstore", "root", "Roshan@24");
-
+			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/bookstore"
+					,"root","Roshan@24");
+			
 //			conn = DriverManager.getConnection("jdbc:mysql://cmsc508.com/humanresources_pradhanr", "pradhanr",
 //					"V00942207");
-
+			
+			
 			// System.out.println("Connection successful....");
 		} catch (SQLException e) {
 			System.out.println("Could not able to connect to Database...");

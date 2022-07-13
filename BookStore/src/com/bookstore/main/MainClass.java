@@ -13,7 +13,8 @@ import com.bookstore.main.utility.UserUtility;
 public class MainClass {
 
 	public static void main(String[] args) {
-
+		
+		
 		// Creating All object
 		Scanner sc = new Scanner(System.in);
 		// Users Objects
@@ -142,30 +143,32 @@ public class MainClass {
 					case 3:
 						System.out.println("3. Forgot Password");
 						System.out.println("");
-
+						
 						System.out.println("Enter your First Name: ");
 						String fName = sc.next();
-
+						
 						System.out.println("Enter your Last Name: ");
 						String lName = sc.next();
-
+						
 						System.out.println("Enter your Username: ");
 						String user_name = sc.next();
-
-						boolean isValid = userService.isValidInfo(u, fName, lName, user_name);
-
-						if (isValid == false) {
+						
+						boolean isValid = userService.isValidInfo(u,fName,lName,user_name);
+						
+						if (isValid==false) {
 							System.out.println("User info dosenot match..");
 							break;
-
+							
 						}
-
+						
 						System.out.println("Enter new Password: ");
 						String newPassword = sc.next();
-
-						userService.updatePassword(u, fName, lName, user_name, newPassword);
-
-						System.out.println("Hello " + fName + ", Your password sucessfully Updated");
+						
+						userService.updatePassword(u,fName,lName,user_name,newPassword);
+						
+						System.out.println("Hello "+fName+", Your password sucessfully Updated");
+						
+						
 
 						break;
 
@@ -177,6 +180,7 @@ public class MainClass {
 				}
 				break;
 
+				
 			// This is a Admin Block
 			case 2:
 
@@ -194,7 +198,7 @@ public class MainClass {
 						System.out.println("Return to Home");
 						break;
 					}
-
+					
 					// Nested Switch case for Admin
 					switch (admin) {
 					case 1:
@@ -213,6 +217,7 @@ public class MainClass {
 						System.out.println("Enter Username: ");
 						String u_Name = sc.next();
 
+						
 						// Checking if userName Present
 
 						while (true) {
@@ -230,20 +235,23 @@ public class MainClass {
 						System.out.println("Enter Password: ");
 						String password = sc.next();
 
+						
 						// Creating User object to pass the entity
-
+						
 						a.setFirst_name(f_Name);
 						a.setLast_name(l_Name);
 						a.setPhone(p_Num);
 						a.setUsername(u_Name);
 						a.setPassword(password);
 
+						
 						// Creating UserService Object to call the add user methods
-
+						
 						adminService.registerAdmin(a);
 
 						String adminId = adminService.getAdminId(a, f_Name, l_Name, u_Name);
 						System.out.println("Admin added Sucessfully. Your Admin Number is : " + adminId);
+						
 
 						break;
 					case 2:
@@ -271,30 +279,30 @@ public class MainClass {
 
 						System.out.println("3. Forgot Password");
 						System.out.println("");
-
+						
 						System.out.println("Enter your First Name: ");
 						String fName = sc.next();
-
+						
 						System.out.println("Enter your Last Name: ");
 						String lName = sc.next();
-
+						
 						System.out.println("Enter your Username: ");
 						String user_name = sc.next();
-
-						boolean isValid = adminService.isValidInfo(a, fName, lName, user_name);
-
-						if (isValid == false) {
+						
+						boolean isValid = adminService.isValidInfo(a,fName,lName,user_name);
+						
+						if (isValid==false) {
 							System.out.println("Admin info dosenot match..");
 							break;
-
+							
 						}
-
+						
 						System.out.println("Enter new Password: ");
 						String newPassword = sc.next();
-
-						adminService.updatePassword(a, fName, lName, user_name, newPassword);
-
-						System.out.println("Hello " + fName + ", Your password sucessfully Updated");
+						
+						adminService.updatePassword(a,fName,lName,user_name,newPassword);
+						
+						System.out.println("Hello "+fName+", Your password sucessfully Updated");
 
 						break;
 
