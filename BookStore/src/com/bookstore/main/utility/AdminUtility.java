@@ -42,24 +42,36 @@ public class AdminUtility {
 				System.out.println("Enter ID of Book to remove:");
 				int bid = sc.nextInt();
 				Book book = bookService.searchBook(bid);
-				bookService.removeBook(book);
+				if(book == null) {
+					System.out.println("Please Enter Valid ID");
+					break;
+				}
+				bookService.removeBook(bid);
 				break;
 			case 3:
 				System.out.println("3. Update Book");
 				System.out.println("Enter ID of Book to update:");
 				bid = sc.nextInt();
 				book = bookService.searchBook(bid);
+				if(book == null) {
+					System.out.println("Please Enter Valid ID");
+					break;
+				}
+				//TODO REMOVE IF NOT ALREADY FIXED
+				book.setBook_id(bid);
 				System.out.println("Current status:");
 				System.out.println(book);
-				System.out.println("\nUpdate Book Copies:");
+				System.out.println("\nUpdate Book Name:");
+				book.setBook_name(sc.next());
+				System.out.println("Update Book Copies:");
 				book.setBook_copies(sc.nextInt());
-				System.out.println("\nUpdate Book Cost:");
+				System.out.println("Update Book Cost:");
 				book.setBook_cost(sc.nextDouble());
-				System.out.println("\nUpdate Book Status:");
+				System.out.println("Update Book Status:");
 				book.setBook_status(sc.next());
-				System.out.println("\nUpdate Book Due Date:");
+				System.out.println("Update Book Due Date:");
 				book.setListed_date(sc.next());
-				//System.out.println("\nUpdate Book Author:");
+				//System.out.println("Update Book Author:");
 				//book.setBook_name(sc.next());
 				System.out.println("TODO: Allow update Author categories and library and admins");
 				

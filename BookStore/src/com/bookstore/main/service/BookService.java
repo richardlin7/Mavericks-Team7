@@ -88,12 +88,12 @@ public class BookService {
 		db.dbClose();
 	}
 	
-	public void removeBook(Book book) { //add book to cart
+	public void removeBook(int book) { //add book to cart
 		db.dbConnect();
-		String sql="remove book where book_id=?";
+		String sql="delete from book where book_id=?";
 		try {
 			PreparedStatement result = db.conn.prepareStatement(sql);
-			result.setInt(1, book.getBook_id());
+			result.setInt(1, book);
 			result.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -103,14 +103,15 @@ public class BookService {
 	
 	public void updateBook(Book book) { //add book to cart
 		db.dbConnect();
-		String sql="update book SET book_name=? book_status=?, book_copies=? listed_date=? where book_id=?";
+		String sql="update book SET book_name=?, book_status=?, book_cost=?, book_copies=?, listed_date=? where book_id=?";
 		try {
 			PreparedStatement result = db.conn.prepareStatement(sql);
 			result.setString(1, book.getBook_name());
 			result.setString(2, book.getBook_status());
-			result.setInt(3, book.getBook_copies());
-			result.setString(4, book.getListed_date());
-			result.setInt(5, book.getBook_id());
+			result.setDouble(3, book.getBook_cost());
+			result.setInt(4, book.getBook_copies());
+			result.setString(5, book.getListed_date());
+			result.setInt(6, book.getBook_id());
 			result.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
