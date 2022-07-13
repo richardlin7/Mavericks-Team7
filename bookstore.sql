@@ -37,7 +37,7 @@ COLLATE = utf8mb4_0900_ai_ci;
 -- Table `bookstore`.`categories`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `bookstore`.`categories` (
-  `category_id` INT NOT NULL,
+  `category_id` INT NOT NULL AUTO_INCREMENT,
   `category_name` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`category_id`))
 ENGINE = InnoDB
