@@ -53,7 +53,7 @@ public class BookService {
 	
 	public Book searchBook(int id) {
 		db.dbConnect();
-		String sql="select book_id,book_name,book_copies,book_cost,book_status,listed_date,author_id,category_id,library_id,admin_id from book where book_id=?";
+		String sql="select book_name,book_copies,book_cost,book_status,listed_date from book where book_id=?";
 		Book e = new Book(); 
 		try {
 			PreparedStatement pstmt = db.conn.prepareStatement(sql);

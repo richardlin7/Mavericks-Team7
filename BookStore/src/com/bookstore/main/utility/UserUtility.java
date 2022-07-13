@@ -60,7 +60,7 @@ public class UserUtility {
 				 
 				Book bk = bookService.searchBook(id); 
 				System.out.println("Existing book for book_id: "+id);
-				System.out.println(bk);
+				System.out.println("Book Name: "+ bk.getBook_name()+", Aviliable Copies: "+bk.getBook_copies()+ ", Book Status: "+bk.getBook_status()+", Listed date: "+bk.getListed_date()+".");
 				 
 				System.out.println("\n Would you like to add this book to cart?");
 				System.out.println("1. Yes");
