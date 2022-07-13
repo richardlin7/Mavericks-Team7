@@ -131,8 +131,8 @@ public class UserService {
 
 			while (result.next()) {
 
-				if (result.getString("first_name").equals(fName) && result.getString("last_name").equals(lName)
-						&& result.getString("username").equals(user_name)) {
+				if (result.getString("first_name").equalsIgnoreCase(fName) && result.getString("last_name").equalsIgnoreCase(lName)
+						&& result.getString("username").equalsIgnoreCase(user_name)) {
 					isValid = true;
 				}
 			}
@@ -166,9 +166,6 @@ public class UserService {
 		}
 
 		db.dbClose();
-	}
-	
-	public void updateCart() {
-		db.dbConnect();
+
 	}
 }

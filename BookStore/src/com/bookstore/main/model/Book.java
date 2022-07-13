@@ -29,12 +29,15 @@ public class Book {
 		this.library = library;
 		this.admin = admin;
 	}
-	public Book(String book_name, int book_copies, String book_status, String listed_date) {
-		this.book_name = book_name;
+	
+public Book(String book_name, int book_copies, String book_status, String listed_date) {
+		this.book_name=book_name;
 		this.book_copies = book_copies;
 		this.book_status = book_status;
 		this.listed_date = listed_date;
 	}
+
+	
 	public int getBook_id() {
 		return book_id;
 	}
@@ -102,4 +105,6 @@ public class Book {
 				+ ", category=" + category + ", library=" + library + ", admin=" + admin + "]";
 	}
 	
+	
+
 }
