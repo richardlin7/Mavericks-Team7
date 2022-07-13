@@ -166,6 +166,9 @@ public class UserService {
 		}
 
 		db.dbClose();
-
+	}
+	
+	public void updateCart() {
+		db.dbConnect();
 	}
 }

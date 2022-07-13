@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import com.bookstore.main.model.Book;
+import com.bookstore.main.service.BookService;
 import com.bookstore.main.service.UserService;
 
 public class UserUtility {
@@ -24,11 +25,11 @@ public class UserUtility {
 			System.out.println("*******User Menu*******");
 			System.out.println("1. Show Books");
 			System.out.println("2. Search Books");
-			System.out.println("3. Short Book");
+			System.out.println("3. Sort Book");
 			System.out.println("4. Checkout Book");
 			System.out.println("0. Log Out");
 
-			System.out.println("Hi " + userName.toUpperCase() + ", Please select the opreation: ");
+			System.out.println("Hi " + userName.toUpperCase() + ", Please select the operation: ");
 			int index = sc.nextInt();
 
 			if (index == 0) {
@@ -52,11 +53,43 @@ public class UserUtility {
 				
 				break;
 			case 2:
-				System.out.println("2. Search Books");
+				System.out.println("***** Book Search *****");
 				
-				//To Do
-
+				System.out.println("Enter Book_ID");
+				int id = sc.nextInt();
+				 
+				Book bk = bookService.searchBook(id); 
+				System.out.println("Existing book for book_id: "+id);
+				System.out.println(bk);
+				 
+				System.out.println("\n Would you like to add this book to cart?");
+				System.out.println("1. Yes");
+			    System.out.println("2. No");
+				index = sc.nextInt();
+				
+				switch (index) {
+				case 1:
+					int copies = bk.getBook_copies()-1;
+					book.setBook_id(id);
+					if (copies == 0) {
+						book.setBook_status("Unavailable");
+					}else {
+						book.setBook_status("Available");
+					}
+					book.setBook_copies(copies);
+					bookService.addBookToCart(book);
+					
+					System.out.println("Book added to cart.");
+					break;
+				case 2:
+					System.out.println("Returning to previous selection...");
+					break;
+				default:
+					System.out.println("Invalid Input. Returning to previous selection...");
+					break;
+				}
 				break;
+				
 			case 3:
 				System.out.println("3. Sort Book");
 				
@@ -73,9 +106,6 @@ public class UserUtility {
 			default:
 				break;
 			}
-
 		}
-
 	}
-
 }
