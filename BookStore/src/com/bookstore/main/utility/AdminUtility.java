@@ -2,11 +2,15 @@ package com.bookstore.main.utility;
 
 import java.util.Scanner;
 
+import com.bookstore.main.model.Book;
+import com.bookstore.main.service.BookService;
+
 public class AdminUtility {
 
 	public void adminMenu(String adminUserName) {
 		@SuppressWarnings("resource")
 		Scanner sc = new Scanner(System.in);
+		BookService bookService = new BookService();
 
 		while (true) {
 
@@ -35,13 +39,31 @@ public class AdminUtility {
 				break;
 			case 2:
 				System.out.println("2. Remove Book");
-				//To Do
-
+				System.out.println("Enter ID of Book to remove:");
+				int bid = sc.nextInt();
+				Book book = bookService.searchBook(bid);
+				bookService.removeBook(book);
 				break;
 			case 3:
 				System.out.println("3. Update Book");
-				//To Do
-
+				System.out.println("Enter ID of Book to update:");
+				bid = sc.nextInt();
+				book = bookService.searchBook(bid);
+				System.out.println("Current status:");
+				System.out.println(book);
+				System.out.println("\nUpdate Book Copies:");
+				book.setBook_copies(sc.nextInt());
+				System.out.println("\nUpdate Book Cost:");
+				book.setBook_cost(sc.nextDouble());
+				System.out.println("\nUpdate Book Status:");
+				book.setBook_status(sc.next());
+				System.out.println("\nUpdate Book Due Date:");
+				book.setListed_date(sc.next());
+				//System.out.println("\nUpdate Book Author:");
+				//book.setBook_name(sc.next());
+				System.out.println("TODO: Allow update Author categories and library and admins");
+				
+				bookService.updateBook(book);
 				break;
 			case 4:
 				System.out.println("4. View Users");

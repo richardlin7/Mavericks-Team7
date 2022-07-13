@@ -87,5 +87,35 @@ public class BookService {
 		}
 		db.dbClose();
 	}
+	
+	public void removeBook(Book book) { //add book to cart
+		db.dbConnect();
+		String sql="remove book where book_id=?";
+		try {
+			PreparedStatement result = db.conn.prepareStatement(sql);
+			result.setInt(1, book.getBook_id());
+			result.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		db.dbClose();
+	}
+	
+	public void updateBook(Book book) { //add book to cart
+		db.dbConnect();
+		String sql="update book SET book_name=? book_status=?, book_copies=? listed_date=? where book_id=?";
+		try {
+			PreparedStatement result = db.conn.prepareStatement(sql);
+			result.setString(1, book.getBook_name());
+			result.setString(2, book.getBook_status());
+			result.setInt(3, book.getBook_copies());
+			result.setString(4, book.getListed_date());
+			result.setInt(5, book.getBook_id());
+			result.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		db.dbClose();
+	}
 
 }
