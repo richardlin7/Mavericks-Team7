@@ -105,10 +105,15 @@ public class AdminUtility {
 				}
 				libraryId = service.getLibraryId(libName);
 				
+				System.out.println("*****List of all the Admin*****");
+				System.out.println(" ");
+				
 				List<Admin> list = service.getAllAdminDetails();
 				
-				System.out.println(list);
-
+				//Stream implement
+				list.stream().forEach(a->System.out.println(a));
+				//System.out.println(list);
+				System.out.println(" ");
 				System.out.println("Enter Your Admin ID: ");
 				int adminId = sc.nextInt();
 

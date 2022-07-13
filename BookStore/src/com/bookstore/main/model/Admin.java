@@ -80,8 +80,7 @@ public class Admin {
 
 	@Override
 	public String toString() {
-		return "Admin [admin_id=" + admin_id + ", first_name=" + first_name + ", last_name=" + last_name + ", phone="
-				+ phone + ", username=" + username + ", password=" + password + "]";
+		return "Admin ID=" + admin_id + ", First Name=" + first_name + ", Last Name=" + last_name + ".";
 	}
 
 }
