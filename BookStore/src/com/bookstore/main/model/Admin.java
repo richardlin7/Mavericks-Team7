@@ -22,6 +22,13 @@ public class Admin {
 		this.username = username;
 		this.password = password;
 	}
+	
+	public Admin(int admin_id, String first_name, String last_name) {
+		// TODO Auto-generated constructor stub
+		this.admin_id = admin_id;
+		this.first_name = first_name;
+		this.last_name = last_name;
+	}
 
 	public int getAdmin_id() {
 		return admin_id;
