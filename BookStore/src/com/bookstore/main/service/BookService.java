@@ -54,19 +54,21 @@ public class BookService {
 	
 	public Book searchBook(int id) {
 		db.dbConnect();
-		String sql="select book_name,book_copies,book_cost,book_status,listed_date from book where book_id=?";
+		String sql="select book_id, book_name,book_copies,book_cost,book_status,listed_date from book where book_id=?";
 		Book e = new Book(); 
 		try {
 			PreparedStatement pstmt = db.conn.prepareStatement(sql);
 			pstmt.setInt(1, id);
 			ResultSet result = pstmt.executeQuery();
-			result.next();
+			
+			while(result.next()) {
 			e = new Book(result.getInt("book_id"),
 					result.getString("book_name"),
 					result.getInt("book_copies"),
 					result.getString("book_status"),
 					result.getString("listed_date")
 					  );
+			}
 			
 		} catch (SQLException ex) {
 			ex.printStackTrace();

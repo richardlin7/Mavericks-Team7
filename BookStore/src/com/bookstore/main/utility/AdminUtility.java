@@ -87,6 +87,7 @@ public class AdminUtility {
 				CategoryId = service.getCategoryId(cateName);
 
 				System.out.println("Enter Library Name: ");
+				sc.nextLine();
 				String libName = sc.nextLine();
 
 //				System.out.println("Enter Library phone: ");
