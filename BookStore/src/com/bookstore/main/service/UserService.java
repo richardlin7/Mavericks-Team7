@@ -171,4 +171,33 @@ public class UserService {
 	public void updateCart() {
 		db.dbConnect();
 	}
+	
+	public boolean checkUserID(int userID) {
+
+		boolean isValid = false;
+		db.dbConnect();
+
+		String sql = " select user_id from user where user_id = ? ";
+		try {
+			PreparedStatement prep = db.conn.prepareStatement(sql);
+			prep.setInt(1, userID);
+
+			ResultSet result = prep.executeQuery();
+
+			while (result.next()) {
+
+				if (result.getInt("user_id")==(userID))
+
+					isValid = true;
+
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		db.dbClose();
+		return isValid;
+	}
 }

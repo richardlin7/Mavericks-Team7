@@ -9,6 +9,9 @@ import java.util.List;
 import com.bookstore.main.DBconnection.DbConnection;
 import com.bookstore.main.model.Admin;
 import com.bookstore.main.model.Book;
+import com.bookstore.main.model.User;
+
+
 
 public class AdminService {
 	DbConnection db = new DbConnection();
@@ -475,6 +478,84 @@ public class AdminService {
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		db.dbClose();
+		return list;
+	}
+	public List<User> fetchUsers() {
+		db.dbConnect();
+		String sql="select * from user";
+		List<User> list = new ArrayList<>();
+		try {
+			PreparedStatement pstmt = db.conn.prepareStatement(sql);
+			ResultSet  rst = pstmt.executeQuery();
+			
+			while(rst.next()) {
+				User user = new User();
+
+				/*list.add(new User(rst.getInt("user_id"),
+									  rst.getString("first_name"),
+									  rst.getString("last_name"), 
+									  rst.getString("phone"),
+									  rst.getString("username"),
+									  rst.getString("password"),
+									  rst.getString("userComment"),
+									  rst.getString("userReview"),
+									  rst.getDouble("user_balance")
+									  ));*/
+				
+				
+				
+				
+				user.setUser_id(rst.getInt("user_id"));
+				user.setFirst_name(rst.getString("first_name"));
+				user.setLast_name(rst.getString("last_name"));
+				user.setPhone(rst.getString("phone"));
+				user.setUsername(rst.getString("username"));
+				user.setPassword(rst.getString("password"));
+				
+				list.add(user);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		db.dbClose();
+		return list;
+	}
+	
+	public void deleteUser(int id) {
+		db.dbConnect();
+		String sql="delete from user where user_id=?";
+		try {
+			PreparedStatement pstmt = db.conn.prepareStatement(sql);
+			pstmt.setInt(1, id);
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		db.dbClose();
+	}
+
+	
+	public List<Admin> fetchAdmins() {
+		db.dbConnect();
+		String sql="select * from admin";
+		List<Admin> list = new ArrayList<>();
+		try {
+			PreparedStatement pstmt = db.conn.prepareStatement(sql);
+			ResultSet  rst = pstmt.executeQuery();
+			
+			while(rst.next()) {
+				list.add(new Admin(rst.getInt("admin_id"),
+									  rst.getString("first_name"),
+									  rst.getString("last_name"), 
+									  rst.getString("phone"),
+									  rst.getString("username"),
+									  rst.getString("password")
+									  ));
+			}
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		db.dbClose();
