@@ -175,7 +175,7 @@ public class AdminUtility {
 				books.setBook_cost(sc.nextDouble());
 				System.out.println("Update Book Status:");
 				books.setBook_status(sc.next());
-				System.out.println("Update Book Due Date:");
+				System.out.println("Update Book Listed Date:");
 				books.setListed_date(sc.next());
 				//System.out.println("Update Book Author:");
 				//book.setBook_name(sc.next());
