@@ -7,6 +7,10 @@ import com.bookstore.main.model.Admin;
 import com.bookstore.main.model.Book;
 import com.bookstore.main.service.AdminService;
 import com.bookstore.main.service.BookService;
+import com.bookstore.main.service.UserService;
+import com.bookstore.main.model.User;
+
+
 
 public class AdminUtility {
 
@@ -15,6 +19,7 @@ public class AdminUtility {
 		Scanner sc = new Scanner(System.in);
 		BookService bookService = new BookService();
 		AdminService service = new AdminService();
+		UserService userService = new UserService();
 
 		while (true) {
 
@@ -24,7 +29,7 @@ public class AdminUtility {
 			System.out.println("3. Update Book");
 			System.out.println("4. View Users");
 			System.out.println("5. Delete User");
-			System.out.println("6. Create New Admin");
+			System.out.println("6. Show Books");
 			System.out.println("0. Log Out");
 
 			System.out.println("Hi " + adminUserName.toUpperCase() + ", Please select the opreation: ");
@@ -184,18 +189,43 @@ public class AdminUtility {
 				bookService.updateBook(books);
 				break;
 			case 4:
-				System.out.println("4. View Users");
+				//System.out.println("4. View Users");
 				//To Do
+				List<User> list1 = service.fetchUsers();
+				 for(User e: list1) {
+					 System.out.println(e);
+				 }
 
 				break;
 			case 5:
-				System.out.println("5. Delete User");
+				//System.out.println("5. Delete User");
 				//To Do
+				System.out.println("Enter User ID");
+				 int user_id = sc.nextInt();
+				 
+				 if(!userService.checkUserID(user_id)) {
+					 System.out.println("User ID does not exist, please try again.");
+				 }else {
+					 service.deleteUser(user_id);
+					 System.out.println("User Deleted from DB..");
+
+				 }
 
 				break;
 			case 6:
-				System.out.println("6. Create New Admin");
 				//To Do
+				System.out.println("***** The Collections of Books *****");
+				System.out.println(" ");
+				
+				// Showing all the books
+				List<Book> list2 = bookService.showAllBooks();
+				
+				for (Book e : list2) {
+					
+					System.out.println("Book Name: "+ e.getBook_name()+", Aviliable Copies: "+e.getBook_copies()+ ", Book Status: "+e.getBook_status()+", Listed date: "+e.getListed_date()+".");
+				}
+				System.out.println(" ");
+				
 
 				break;
 

@@ -25,8 +25,7 @@ public class UserUtility {
 			System.out.println("*******User Menu*******");
 			System.out.println("1. Show Books");
 			System.out.println("2. Search Books");
-			System.out.println("3. Sort Book");
-			System.out.println("4. Checkout Book");
+			System.out.println("3. Checkout Book");
 			System.out.println("0. Log Out");
 
 			System.out.println("Hi " + userName.toUpperCase() + ", Please select the operation: ");
@@ -93,20 +92,12 @@ public class UserUtility {
 					break;
 				}
 				break;
-				
 			case 3:
-				System.out.println("3. Sort Book");
+				System.out.println("3. Checkout Book");
 				
 				//To Do
 
 				break;
-			case 4:
-				System.out.println("4. Checkout Book");
-				
-				//To Do
-
-				break;
-
 			default:
 				break;
 			}
