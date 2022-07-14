@@ -40,7 +40,7 @@ public class MainClass {
 			System.out.println("1. User");
 			System.out.println("2. Admin");
 			System.out.println("0. Exit");
-			System.out.println("**********************************");
+			System.out.println("***********************************");
 			System.out.println("Enter your selection: ");
 			int index = sc.nextInt();
 
