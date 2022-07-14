@@ -24,7 +24,6 @@ public class AdminUtility {
 			System.out.println("3. Update Book");
 			System.out.println("4. View Users");
 			System.out.println("5. Delete User");
-			System.out.println("6. Create New Admin");
 			System.out.println("0. Log Out");
 
 			System.out.println("Hi " + adminUserName.toUpperCase() + ", Please select the opreation: ");
@@ -193,12 +192,6 @@ public class AdminUtility {
 				//To Do
 
 				break;
-			case 6:
-				System.out.println("6. Create New Admin");
-				//To Do
-
-				break;
-
 			default:
 				break;
 			}
