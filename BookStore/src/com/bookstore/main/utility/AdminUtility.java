@@ -46,7 +46,7 @@ public class AdminUtility {
 				int bookCopies = sc.nextInt();
 				System.out.println("Enter the cost: ");
 				double bookCost = sc.nextDouble();
-				System.out.println("Book Satatus Active/Inactive: ");
+				System.out.println("Book Status Available/Unavailable: ");
 				String bookStatus = sc.next();
 
 				System.out.println("Book Listed Date: ");
@@ -94,7 +94,7 @@ public class AdminUtility {
 //				String phone = sc.next();
 
 				int libraryId;
-				// Checking weather Library is present in batabase
+				// Checking weather Library is present in database
 				boolean isLibraryValid = service.isLibraryIdPresent(libName);
 
 				if (isLibraryValid == true) {
@@ -133,7 +133,7 @@ public class AdminUtility {
 				break;
 			case 2:
 				System.out.println("*****Delete Book*****");
-				System.out.println("List of all Available Book");
+				System.out.println("List of all Available Books");
 				
 				List<Book> bookList = bookService.showAllBooks();
 				bookList.stream().forEach(b->System.out.println(b));
@@ -150,7 +150,7 @@ public class AdminUtility {
 			case 3:
 				System.out.println("*****Update Book*****");
 				
-				System.out.println("List of all Available Book");
+				System.out.println("List of all Available Books");
 				
 				bookList = bookService.showAllBooks();
 				bookList.stream().forEach(b->System.out.println(b));
@@ -167,7 +167,8 @@ public class AdminUtility {
 				System.out.println("Current status:");
 				System.out.println(books);
 				System.out.println("\nUpdate Book Name:");
-				books.setBook_name(sc.next());
+				sc.nextLine();
+				books.setBook_name(sc.nextLine());
 				System.out.println("Update Book Copies:");
 				books.setBook_copies(sc.nextInt());
 				System.out.println("Update Book Cost:");
