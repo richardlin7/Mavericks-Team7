@@ -59,6 +59,10 @@ public class UserUtility {
 				int id = sc.nextInt();
 				 
 				Book bk = bookService.searchBook(id); 
+				if(bk == null) {
+					System.out.println("Please Enter Valid Book ID");
+					break;
+				}
 				System.out.println("Existing book for book_id: "+id);
 				System.out.println("Book Name: "+ bk.getBook_name()+", Aviliable Copies: "+bk.getBook_copies()+ ", Book Status: "+bk.getBook_status()+", Listed date: "+bk.getListed_date()+".");
 				 

@@ -142,7 +142,7 @@ public class AdminUtility {
 				int bid = sc.nextInt();
 				Book books = bookService.searchBook(bid);
 				if(books == null) {
-					System.out.println("Please Enter Valid ID");
+					System.out.println("Please Enter Valid Book ID");
 					break;
 				}
 				bookService.removeBook(bid);
@@ -159,7 +159,7 @@ public class AdminUtility {
 				bid = sc.nextInt();
 				books = bookService.searchBook(bid);
 				if(books == null) {
-					System.out.println("Please Enter Valid ID");
+					System.out.println("Please Enter Valid Book ID");
 					break;
 				}
 				//TODO REMOVE IF NOT ALREADY FIXED
