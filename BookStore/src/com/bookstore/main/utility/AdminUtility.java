@@ -87,7 +87,7 @@ public class AdminUtility {
 				CategoryId = service.getCategoryId(cateName);
 
 				System.out.println("Enter Library Name: ");
-				String libName = sc.next();
+				String libName = sc.nextLine();
 
 //				System.out.println("Enter Library phone: ");
 //				String phone = sc.next();
@@ -131,7 +131,12 @@ public class AdminUtility {
 
 				break;
 			case 2:
-				System.out.println("2. Remove Book");
+				System.out.println("*****Delete Book*****");
+				System.out.println("List of all Available Book");
+				
+				List<Book> bookList = bookService.showAllBooks();
+				bookList.stream().forEach(b->System.out.println(b));
+				
 				System.out.println("Enter ID of Book to remove:");
 				int bid = sc.nextInt();
 				Book books = bookService.searchBook(bid);
@@ -142,7 +147,13 @@ public class AdminUtility {
 				bookService.removeBook(bid);
 				break;
 			case 3:
-				System.out.println("3. Update Book");
+				System.out.println("*****Update Book*****");
+				
+				System.out.println("List of all Available Book");
+				
+				bookList = bookService.showAllBooks();
+				bookList.stream().forEach(b->System.out.println(b));
+				
 				System.out.println("Enter ID of Book to update:");
 				bid = sc.nextInt();
 				books = bookService.searchBook(bid);

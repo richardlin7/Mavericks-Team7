@@ -19,7 +19,7 @@ public class BookService {
 	public List<Book> showAllBooks() {
 		//List<String> list = new ArrayList<>();
 		db.dbConnect();
-		String sql = " Select book_name,book_copies,book_status, listed_date from book ";
+		String sql = " Select * from book ";
 		List<Book> list = new ArrayList<>();
 		
 		try {
@@ -35,7 +35,8 @@ public class BookService {
 //				
 //				list=Arrays.asList(book_name,book_copies,book_status,listed_date);
 				
-				list.add(new Book(result.getString("book_name"),
+				list.add(new Book(result.getInt("book_id"),
+								result.getString("book_name"),
 								result.getInt("book_copies"),
 								result.getString("book_status"),
 								result.getString("listed_date")));
@@ -60,7 +61,8 @@ public class BookService {
 			pstmt.setInt(1, id);
 			ResultSet result = pstmt.executeQuery();
 			result.next();
-			e = new Book(result.getString("book_name"),
+			e = new Book(result.getInt("book_id"),
+					result.getString("book_name"),
 					result.getInt("book_copies"),
 					result.getString("book_status"),
 					result.getString("listed_date")

@@ -29,7 +29,8 @@ public class Book {
 		this.library = library;
 		this.admin = admin;
 	}
-	public Book(String book_name, int book_copies, String book_status, String listed_date) {
+	public Book(int book_id, String book_name, int book_copies, String book_status, String listed_date) {
+		this.book_id = book_id;
 		this.book_name = book_name;
 		this.book_copies = book_copies;
 		this.book_status = book_status;
@@ -97,9 +98,8 @@ public class Book {
 	}
 	@Override
 	public String toString() {
-		return "Book [book_id=" + book_id + ", book_name=" + book_name + ", book_copies=" + book_copies + ", book_cost="
-				+ book_cost + ", book_status=" + book_status + ", listed_date=" + listed_date + ", author=" + author
-				+ ", category=" + category + ", library=" + library + ", admin=" + admin + "]";
+		return "Book Id=" + book_id + ", Book Name=" + book_name + ", Book Copies=" + book_copies +  ", Status=" + book_status + ", Listed Date=" + listed_date + ", Author=" + author
+				+ ", category=" + category + ", library=" + library + ".";
 	}
 	
 }
