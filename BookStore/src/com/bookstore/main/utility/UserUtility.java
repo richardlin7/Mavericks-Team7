@@ -118,7 +118,7 @@ public class UserUtility {
 					break;
 				}
 				break;
-			case 3:
+			case "3":
 				System.out.println("***** Checkout Books *****\n");
 				System.out.println("Here is what's in your cart: \n");
 				int userId = Integer.parseInt(service.getUserIdByUsername(userName));
