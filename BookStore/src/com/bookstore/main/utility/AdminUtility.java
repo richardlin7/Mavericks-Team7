@@ -62,9 +62,7 @@ public class AdminUtility {
 				System.out.println("Enter Author Last Name: ");
 				String authLastName = sc.next();
 
-				// System.out.println("Checking Author....");
-
-				// int authorId = service.getAuthorId(authFirstName,authLastName);
+				
 				int authorId;
 				// Checking weather author is present in batabase
 				boolean isValid = service.isAuthorPresent(authFirstName, authLastName);
@@ -95,8 +93,6 @@ public class AdminUtility {
 				sc.nextLine();
 				String libName = sc.nextLine();
 
-//				System.out.println("Enter Library phone: ");
-//				String phone = sc.next();
 
 				int libraryId;
 				// Checking weather Library is present in database
@@ -118,7 +114,7 @@ public class AdminUtility {
 				
 				//Stream implement
 				list.stream().forEach(a->System.out.println(a));
-				//System.out.println(list);
+				
 				System.out.println(" ");
 				System.out.println("Enter Your Admin ID: ");
 				int adminId = sc.nextInt();

@@ -7,14 +7,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.bookstore.main.DBconnection.DbConnection;
-import com.bookstore.main.model.Book;
 import com.bookstore.main.model.Cart;
 
 public class CartService {
 	DbConnection db = new DbConnection();
 	
 	public List<Cart> showAllCart(int user_id) {
-		//List<String> list = new ArrayList<>();
+		
 		db.dbConnect();
 		String sql = " Select * from cart where user_id=? ";
 		List<Cart> list = new ArrayList<>();
@@ -25,12 +24,6 @@ public class CartService {
 			ResultSet result = prep.executeQuery();
 			
 			while (result.next()) {
-//				String book_name = result.getString();
-//				String book_copies = result.getString("book_copies");
-//				String book_status = result.getString("book_status");
-//				String listed_date = result.getString("listed_date");
-//				
-//				list=Arrays.asList(book_name,book_copies,book_status,listed_date);
 				
 				list.add(new Cart(result.getInt("cart_id"),
 						result.getInt("user_id"),
@@ -40,7 +33,7 @@ public class CartService {
 			
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 		
@@ -83,7 +76,7 @@ public class CartService {
 			prep.execute();
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 		db.dbClose();
