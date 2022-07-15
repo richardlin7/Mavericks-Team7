@@ -36,7 +36,7 @@ public class AdminUtility {
 			String index = sc.next();
 
 			if (index.equals("0")) {
-				System.out.println("Logout..Returining to the menu.");
+				System.out.println("Logging out... Returning to the menu.");
 				break;
 			}
 
@@ -151,6 +151,7 @@ public class AdminUtility {
 					break;
 				}
 				bookService.removeBook(bid);
+				System.out.println(" The book " + books.getBook_name() + " deleted Successfully!!!");
 				break;
 			case "3":
 				System.out.println("*****Update Book*****");
@@ -184,12 +185,13 @@ public class AdminUtility {
 				books.setListed_date(sc.next());
 				//System.out.println("Update Book Author:");
 				//book.setBook_name(sc.next());
-				System.out.println("TODO: Allow update Author categories and library and admins");
+				//System.out.println("TODO: Allow update Author categories and library and admins");
 				
 				bookService.updateBook(books);
+				System.out.println(" The book " + books.getBook_name() + " updated Successfuly!!!");
 				break;
 			case "4":
-				//System.out.println("4. View Users");
+				System.out.println("*****View Users*****");
 				//To Do
 				List<User> list1 = service.fetchUsers();
 				 for(User e: list1) {
@@ -198,7 +200,7 @@ public class AdminUtility {
 
 				break;
 			case "5":
-				//System.out.println("5. Delete User");
+				System.out.println("*****Delete User*****");
 				//To Do
 				System.out.println("Enter User ID");
 				 int user_id = sc.nextInt();

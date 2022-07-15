@@ -39,7 +39,7 @@ public class UserUtility {
 			String index = sc.next();
 
 			if (index.equals("0")) {
-				System.out.println("Logout..Returining to the menu.");
+				System.out.println("Logging out... Returning to the menu.");
 				break;
 			}
 
