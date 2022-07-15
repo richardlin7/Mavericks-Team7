@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS `bookstore`.`admin` (
   `password` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`admin_id`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 10001
+AUTO_INCREMENT = 2000000000
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -109,7 +109,7 @@ CREATE TABLE IF NOT EXISTS `bookstore`.`user` (
   PRIMARY KEY (`user_id`),
   UNIQUE INDEX `user_id_UNIQUE` (`user_id` ASC) )
 ENGINE = InnoDB
-AUTO_INCREMENT = 1000000124
+AUTO_INCREMENT = 2000000000
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -118,8 +118,8 @@ COLLATE = utf8mb4_0900_ai_ci;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `bookstore`.`cart` (
   `cart_id` INT NOT NULL AUTO_INCREMENT,
-  `book_id` INT NOT NULL,
   `user_id` INT NOT NULL,
+  `book_id` INT NOT NULL,
   `book_copies` INT NOT NULL,
   PRIMARY KEY (`cart_id`,`book_id`,`user_id`),
   UNIQUE INDEX `cart_id_UNIQUE` (`cart_id` ASC),
@@ -132,7 +132,7 @@ CREATE TABLE IF NOT EXISTS `bookstore`.`cart` (
     FOREIGN KEY (`user_id`)
     REFERENCES `bookstore`.`user` (`user_id`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 1000000124
+AUTO_INCREMENT = 22342
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -141,8 +141,8 @@ COLLATE = utf8mb4_0900_ai_ci;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `bookstore`.`checkout` (
   `checkout_id` INT NOT NULL AUTO_INCREMENT,
-  `book_id` INT NOT NULL,
   `user_id` INT NOT NULL,
+  `book_id` INT NOT NULL,
   `book_copies` INT NOT NULL,
   PRIMARY KEY (`checkout_id`,`book_id`,`user_id`),
   UNIQUE INDEX `checkout_id_UNIQUE` (`checkout_id` ASC),
@@ -155,7 +155,7 @@ CREATE TABLE IF NOT EXISTS `bookstore`.`checkout` (
     FOREIGN KEY (`user_id`)
     REFERENCES `bookstore`.`user` (`user_id`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 1000000124
+AUTO_INCREMENT = 32344
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 

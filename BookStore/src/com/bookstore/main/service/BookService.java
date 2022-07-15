@@ -52,6 +52,31 @@ public class BookService {
 		return list;
 	}
 	
+	public String getBookNameById(int book_id) {
+		db.dbConnect();
+		String bookName = null;
+		String sql = " SELECT book_name FROM `book` WHERE book_id=?";
+		try {
+			PreparedStatement prep = db.conn.prepareStatement(sql);
+			prep.setInt(1, book_id);
+			
+			ResultSet res = prep.executeQuery();
+			while (res.next()) {
+				bookName = res.getString("book_name");
+
+			}
+
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		db.dbClose();
+
+		return bookName;
+	}
+	
 	public Book searchBook(int id) {
 		db.dbConnect();
 		String sql="select book_id, book_name,book_copies,book_cost,book_status,listed_date from book where book_id=?";
@@ -75,21 +100,6 @@ public class BookService {
 		}
 		db.dbClose();
 		return e;
-	}
-	
-	public void addBookToCart(Book book) { //add book to cart
-		db.dbConnect();
-		String sql="update book SET book_status=?, book_copies=? where book_id=?";
-		try {
-			PreparedStatement result = db.conn.prepareStatement(sql);
-			result.setString(1, book.getBook_status());
-			result.setInt(2, book.getBook_copies());
-			result.setInt(3, book.getBook_id());
-			result.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		db.dbClose();
 	}
 	
 	public void removeBook(int book) { //add book to cart

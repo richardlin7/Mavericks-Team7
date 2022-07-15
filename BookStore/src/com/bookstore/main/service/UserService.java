@@ -31,7 +31,7 @@ public class UserService {
 
 	}
 
-	public String getUserId(User u, String f_Name, String l_Name, String u_Name) {
+	public String getUserId(String f_Name, String l_Name, String u_Name) {
 		db.dbConnect();
 		String userId = null;
 		String sql = " SELECT user_id FROM `user` WHERE first_name = ? and last_name=? and username =?";
@@ -56,7 +56,31 @@ public class UserService {
 		db.dbClose();
 
 		return userId;
+	}
+	
+	public String getUserIdByUsername(String u_Name) {
+		db.dbConnect();
+		String userId = null;
+		String sql = " SELECT user_id FROM `user` WHERE username =?";
+		try {
+			PreparedStatement prep = db.conn.prepareStatement(sql);
+			prep.setString(1, u_Name);
+			
+			ResultSet res = prep.executeQuery();
+			while (res.next()) {
+				userId = res.getString("user_id");
 
+			}
+
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		db.dbClose();
+
+		return userId;
 	}
 
 	public boolean checkUsernameAndPassword(String userName, String uPassword, User u) {
@@ -168,9 +192,6 @@ public class UserService {
 		db.dbClose();
 	}
 	
-	public void updateCart() {
-		db.dbConnect();
-	}
 	
 	public boolean checkUserID(int userID) {
 

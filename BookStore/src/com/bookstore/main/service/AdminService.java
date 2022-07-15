@@ -505,9 +505,6 @@ public class AdminService {
 									  rst.getDouble("user_balance")
 									  ));*/
 				
-				
-				
-				
 				user.setUser_id(rst.getInt("user_id"));
 				user.setFirst_name(rst.getString("first_name"));
 				user.setLast_name(rst.getString("last_name"));

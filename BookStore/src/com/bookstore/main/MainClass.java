@@ -114,7 +114,7 @@ public class MainClass {
 						// Calling user-service to register Users
 						userService.registerUser(u);
 
-						String userId = userService.getUserId(u, f_Name, l_Name, u_Name);
+						String userId = userService.getUserId(f_Name, l_Name, u_Name);
 						System.out.println("User added Sucessfully. Your Libary Card Number is : " + userId);
 
 						break;

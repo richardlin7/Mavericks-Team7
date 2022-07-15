@@ -4,8 +4,11 @@ import java.util.List;
 import java.util.Scanner;
 
 import com.bookstore.main.model.Book;
+import com.bookstore.main.model.Cart;
+import com.bookstore.main.model.Checkout;
 import com.bookstore.main.service.BookService;
 import com.bookstore.main.service.UserService;
+import com.bookstore.main.service.CartService;
 
 public class UserUtility {
 
@@ -14,10 +17,14 @@ public class UserUtility {
 	//Creating userService Object
 	UserService service = new UserService();
 	BookService bookService = new BookService();
+	CartService cartService = new CartService();
 	Book book= new Book();
+	Cart cart= new Cart();
+	Checkout checkout= new Checkout();
 	
 	
 
+	@SuppressWarnings("null")
 	public void userMenu(String userName) {
 
 		while (true) {
@@ -38,8 +45,7 @@ public class UserUtility {
 
 			switch (index) {
 			case 1:
-				System.out.println("***** The Collections of Books *****");
-				System.out.println(" ");
+				System.out.println("***** The Collections of Books *****\n");
 				
 				// Showing all the books
 				List<Book> list = bookService.showAllBooks();
@@ -52,18 +58,18 @@ public class UserUtility {
 				
 				break;
 			case 2:
-				System.out.println("***** Book Search *****");
+				System.out.println("***** Book Search *****\n");
 				
 				System.out.println("Enter Book_ID");
-				int id = sc.nextInt();
+				int bookId = sc.nextInt();
 				 
-				Book bk = bookService.searchBook(id); 
+				Book bk = bookService.searchBook(bookId); 
 				if(bk == null) {
-					System.out.println("Please Enter Valid Book ID");
+					System.out.println("Book ID does not exist. Returning to previous selection...");
 					break;
 				}
-				System.out.println("Existing book for book_id: "+id);
-				System.out.println("Book Name: "+ bk.getBook_name()+", Aviliable Copies: "+bk.getBook_copies()+ ", Book Status: "+bk.getBook_status()+", Listed date: "+bk.getListed_date()+".");
+				System.out.println("Existing book for Book ID: "+bookId);
+				System.out.println("Book Name: "+ bk.getBook_name()+", Available Copies: "+bk.getBook_copies()+ ", Book Status: "+bk.getBook_status()+", Listed date: "+bk.getListed_date()+".");
 				 
 				System.out.println("\n Would you like to add this book to cart?");
 				System.out.println("1. Yes");
@@ -72,16 +78,33 @@ public class UserUtility {
 				
 				switch (index) {
 				case 1:
-					int copies = bk.getBook_copies()-1;
-					book.setBook_id(id);
-					if (copies == 0) {
-						book.setBook_status("Unavailable");
-					}else {
-						book.setBook_status("Available");
+					if (bk.getBook_copies() == 0) {
+						System.out.println("Unavailable. Returning to previous selection...");
+						break;
 					}
-					book.setBook_copies(copies);
-					bookService.addBookToCart(book);
+					int copies = bk.getBook_copies()-1;
+					if (copies == 0) {
+						bk.setBook_status("Unavailable");
+					}else {
+						bk.setBook_status("Available");
+					}
+					bk.setBook_copies(copies);
+					bookService.updateBook(bk);
+					int userId = Integer.parseInt(service.getUserIdByUsername(userName));
 					
+					Cart crt = cartService.searchCart(bookId, userId);
+					if(crt == null) {
+						crt = new Cart();
+						crt.setUser_id(userId);
+						crt.setBook_id(bookId);
+						crt.setBook_copies(1);
+						cartService.insertCart(crt);
+						System.out.println("Book added to cart.");
+						break;
+					}
+					int cartCopies = crt.getBook_copies()+1;
+					crt.setBook_copies(cartCopies);
+					cartService.updateCart(crt);
 					System.out.println("Book added to cart.");
 					break;
 				case 2:
@@ -93,10 +116,17 @@ public class UserUtility {
 				}
 				break;
 			case 3:
-				System.out.println("3. Checkout Book");
+				System.out.println("***** Checkout Book *****\n");
+				System.out.println("Here is what's in your cart\n");
+				int userId = Integer.parseInt(service.getUserIdByUsername(userName));
+				List<Cart> cartList = cartService.showAllCart(userId);
 				
-				//To Do
-
+				for (Cart cart : cartList) {
+					
+					System.out.println("Cart ID: "+cart.getCart_id()+", Book ID: "+cart.getBook_id()+", Book Name: "+ bookService.getBookNameById(cart.getBook_id())+", Book Copies: "+cart.getBook_copies()+".");
+				}
+				System.out.println(" ");
+				
 				break;
 			default:
 				break;
