@@ -9,6 +9,7 @@ import com.bookstore.main.model.Checkout;
 import com.bookstore.main.service.BookService;
 import com.bookstore.main.service.UserService;
 import com.bookstore.main.service.CartService;
+import com.bookstore.main.service.CheckoutService;
 
 public class UserUtility {
 
@@ -18,6 +19,7 @@ public class UserUtility {
 	UserService service = new UserService();
 	BookService bookService = new BookService();
 	CartService cartService = new CartService();
+	CheckoutService checkoutService = new CheckoutService();
 	Book book= new Book();
 	Cart cart= new Cart();
 	Checkout checkout= new Checkout();
@@ -32,7 +34,8 @@ public class UserUtility {
 			System.out.println("*******User Menu*******");
 			System.out.println("1. Show Books");
 			System.out.println("2. Search Books");
-			System.out.println("3. Checkout Book");
+			System.out.println("3. Checkout Books");
+//			System.out.println("4. Checked Out Books");
 			System.out.println("0. Log Out");
 
 			System.out.println("Hi " + userName.toUpperCase() + ", Please select the operation: ");
@@ -52,7 +55,7 @@ public class UserUtility {
 				
 				for (Book book : list) {
 					
-					System.out.println("Book Name: "+ book.getBook_name()+", Aviliable Copies: "+book.getBook_copies()+ ", Book Status: "+book.getBook_status()+", Listed date: "+book.getListed_date()+".");
+					System.out.println("Book ID: " + bookService.getBookIdByName(book.getBook_name()) + ", Book Name: "+ book.getBook_name()+", Aviliable Copies: "+book.getBook_copies()+ ", Book Status: "+book.getBook_status()+", Listed date: "+book.getListed_date()+".");
 				}
 				System.out.println(" ");
 				
@@ -116,18 +119,63 @@ public class UserUtility {
 				}
 				break;
 			case 3:
-				System.out.println("***** Checkout Book *****\n");
-				System.out.println("Here is what's in your cart\n");
+				System.out.println("***** Checkout Books *****\n");
+				System.out.println("Here is what's in your cart: \n");
 				int userId = Integer.parseInt(service.getUserIdByUsername(userName));
+//				if(cartService.isCartPresent(userId) == false) {
+//					System.out.println("There's nothing in your cart! Returning to previous selection...\n");
+//					break;
+//				}
 				List<Cart> cartList = cartService.showAllCart(userId);
 				
 				for (Cart cart : cartList) {
-					
-					System.out.println("Cart ID: "+cart.getCart_id()+", Book ID: "+cart.getBook_id()+", Book Name: "+ bookService.getBookNameById(cart.getBook_id())+", Book Copies: "+cart.getBook_copies()+".");
+					System.out.println("Cart ID: "+cart.getCart_id()+", Book ID: "+cart.getBook_id()+", Book Name: "+ bookService.getBookNameById(cart.getBook_id())+", Book Copies: "+cart.getBook_copies()+".\n");
 				}
-				System.out.println(" ");
 				
+//				System.out.println("Would you like to check these books out?");
+//				System.out.println("1. Yes\n2. No");
+//				index = sc.nextInt();
+//				
+//				Checkout chkout = new Checkout();
+//				int chkBookID = 0;
+//				int chkBookCopies = 0;
+//				switch (index) {
+//				case 1:
+//					for (Cart cart : cartList) {
+//						
+//						chkout = new Checkout();
+//						chkBookID = cart.getBook_id();
+//						chkBookCopies = cart.getBook_copies();
+//						chkout.setUser_id(userId);
+//						chkout.setBook_id(chkBookID);
+//						chkout.setBook_copies(chkBookCopies);
+//						checkoutService.insertCheckout(chkout);
+//						cartService.removeCart(cart.getCart_id());
+//					}
+//					System.out.println("You have successfully checked out these books.\n");
+//					break;
+//				case 2:
+//					System.out.println("Returning to previous selection...\n");
+//					break;
+//				default:
+//					System.out.println("Invalid Input. Returning to previous selection...\n");
+//					break;
+//				}
 				break;
+//			case 4:
+//				System.out.println("***** Checked Out Books *****\n");
+//				System.out.println("Here is what you've checked out: \n");
+//				userId = Integer.parseInt(service.getUserIdByUsername(userName));
+//				
+//				List<Checkout> checkoutList = checkoutService.showAllCheckout(userId);
+////				if(checkoutService.isCheckoutPresent(userId) == false) {
+////					System.out.println("There's nothing you've checked out! Returning to previous selection...\n");
+////					break;
+////				}
+//				for (Checkout checkout : checkoutList) {
+//					System.out.println("Checkout ID: "+checkout.getCheckout_id()+", Book ID: "+checkout.getBook_id()+", Book Name: "+ bookService.getBookNameById(checkout.getBook_id())+", Book Copies: "+checkout.getBook_copies()+".\n");
+//				}
+//				break;
 			default:
 				break;
 			}

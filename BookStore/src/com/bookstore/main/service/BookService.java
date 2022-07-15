@@ -77,6 +77,31 @@ public class BookService {
 		return bookName;
 	}
 	
+	public int getBookIdByName(String book_name) {
+		db.dbConnect();
+		int bookId=0;
+		String sql = " SELECT book_id FROM `book` WHERE book_name=?";
+		try {
+			PreparedStatement prep = db.conn.prepareStatement(sql);
+			prep.setString(1, book_name);
+			
+			ResultSet res = prep.executeQuery();
+			while (res.next()) {
+				bookId = res.getInt("book_id");
+
+			}
+
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		db.dbClose();
+
+		return bookId;
+	}
+	
 	public Book searchBook(int id) {
 		db.dbConnect();
 		String sql="select book_id, book_name,book_copies,book_cost,book_status,listed_date from book where book_id=?";

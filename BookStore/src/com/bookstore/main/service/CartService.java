@@ -7,8 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.bookstore.main.DBconnection.DbConnection;
-import com.bookstore.main.model.Book;
 import com.bookstore.main.model.Cart;
+import com.bookstore.main.model.User;
 
 public class CartService {
 	DbConnection db = new DbConnection();
@@ -72,6 +72,30 @@ public class CartService {
 		return e;
 	}
 	
+//	public boolean isCartPresent(int user_id) {
+//		boolean isCartPresent = false;
+//		db.dbConnect();
+//		String sql = " select cart_id from cart where user_id=? ";
+//
+//		try {
+//			PreparedStatement prep = db.conn.prepareStatement(sql);
+//			prep.setInt(1, user_id);
+//
+//			ResultSet result = prep.executeQuery();
+//			while (result.next()) {
+//				if (result.getInt("user_id") == user_id) {
+//					isCartPresent = true;
+//				}
+//			}
+//
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		db.dbClose();
+//		return isCartPresent;
+//	}
+	
 	public void insertCart(Cart cart) {
 		db.dbConnect();
 		String sql = " INSERT INTO `cart`(`user_id`, `book_id`, `book_copies`) " + "VALUES (?,?,?) ";
@@ -98,6 +122,19 @@ public class CartService {
 			result.setInt(2, cart.getBook_id());
 			result.setInt(3, cart.getBook_copies());
 			result.setInt(4, cart.getCart_id());
+			result.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		db.dbClose();
+	}
+	
+	public void removeCart(int cart) { //add book to cart
+		db.dbConnect();
+		String sql="delete from cart where cart_id=?";
+		try {
+			PreparedStatement result = db.conn.prepareStatement(sql);
+			result.setInt(1, cart);
 			result.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
