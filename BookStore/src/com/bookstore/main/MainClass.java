@@ -42,16 +42,16 @@ public class MainClass {
 			System.out.println("0. Exit");
 			System.out.println("***********************************");
 			System.out.println("Enter your selection: ");
-			int index = sc.nextInt();
+			String index = sc.next();
 
-			if (index == 0) {
+			if (index.equals("0")) {
 				break;
 			}
 
 			switch (index) {
 
 			// This is a User Block
-			case 1:
+			case "1":
 
 				while (true) {
 
@@ -62,14 +62,14 @@ public class MainClass {
 					System.out.println("0. Exit");
 					System.out.println("User Enter your selection: ");
 					System.out.println("");
-					int user = sc.nextInt();
-					if (user == 0) {
+					String user = sc.next();
+					if (user.equals("0")) {
 						System.out.println("Return to home");
 						break;
 					}
 					// Nested Switch case for User
 					switch (user) {
-					case 1:
+					case "1":
 						System.out.println("1. User Register Here!");
 						System.out.println("");
 
@@ -118,7 +118,7 @@ public class MainClass {
 						System.out.println("User added Sucessfully. Your Libary Card Number is : " + userId);
 
 						break;
-					case 2:
+					case "2":
 						System.out.println("***** User Login *****");
 						System.out.println("");
 
@@ -140,7 +140,7 @@ public class MainClass {
 						}
 
 						break;
-					case 3:
+					case "3":
 						System.out.println("3. Forgot Password");
 						System.out.println("");
 						
@@ -182,7 +182,7 @@ public class MainClass {
 
 				
 			// This is a Admin Block
-			case 2:
+			case "2":
 
 				while (true) {
 
@@ -193,15 +193,15 @@ public class MainClass {
 					System.out.println("0. Exit");
 					System.out.println("Admin Enter your selection: ");
 					System.out.println("");
-					int admin = sc.nextInt();
-					if (admin == 0) {
+					String admin = sc.next();
+					if (admin.equals("0")) {
 						System.out.println("Return to Home");
 						break;
 					}
 					
 					// Nested Switch case for Admin
 					switch (admin) {
-					case 1:
+					case "1":
 						System.out.println("Admin Register Here!");
 						System.out.println("");
 
@@ -254,7 +254,7 @@ public class MainClass {
 						
 
 						break;
-					case 2:
+					case "2":
 						System.out.println("***** Admin Login *****");
 						System.out.println("");
 
@@ -275,7 +275,7 @@ public class MainClass {
 						}
 
 						break;
-					case 3:
+					case "3":
 
 						System.out.println("3. Forgot Password");
 						System.out.println("");
