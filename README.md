@@ -102,8 +102,8 @@ authorLName
     
     
     Roles:
-    Roshan - Admin- login system, add, delete, update and list books
-    Rory - Admin - Library Transfer System + Track availability
+    Roshan - Admin- login system, add and list books
+    Rory - Admin - delete and update boooks. Library Transfer System + Track availability
     Taranvir - User- login, applying for library card, review and like functionality
     Richard - User- Browse/Rent/Pay for books
 
@@ -130,8 +130,8 @@ Forgot Password -Done (Roshan)
 
 
 Add Books - in progress (Taranvir)
-Delete Book
-Update Book
+Delete Book - done (Rory)
+Update Book - In Progress (Rory)
 
 
 View all users - Done(Taranvir)
