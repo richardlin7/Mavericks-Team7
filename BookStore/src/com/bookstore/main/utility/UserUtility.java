@@ -36,15 +36,15 @@ public class UserUtility {
 			System.out.println("0. Log Out");
 
 			System.out.println("Hi " + userName.toUpperCase() + ", Please select the operation: ");
-			int index = sc.nextInt();
+			String index = sc.next();
 
-			if (index == 0) {
+			if (index.equals("0")) {
 				System.out.println("Logout..Returining to the menu.");
 				break;
 			}
 
 			switch (index) {
-			case 1:
+			case "1":
 				System.out.println("***** The Collections of Books *****\n");
 				
 				// Showing all the books
@@ -57,7 +57,7 @@ public class UserUtility {
 				System.out.println(" ");
 				
 				break;
-			case 2:
+			case "2":
 				System.out.println("***** Book Search *****\n");
 				
 				System.out.println("Enter Book_ID");
@@ -74,10 +74,10 @@ public class UserUtility {
 				System.out.println("\n Would you like to add this book to cart?");
 				System.out.println("1. Yes");
 			    System.out.println("2. No");
-				index = sc.nextInt();
+				index = sc.next();
 				
 				switch (index) {
-				case 1:
+				case "1":
 					if (bk.getBook_copies() == 0) {
 						System.out.println("Unavailable. Returning to previous selection...");
 						break;
@@ -107,7 +107,7 @@ public class UserUtility {
 					cartService.updateCart(crt);
 					System.out.println("Book added to cart.");
 					break;
-				case 2:
+				case "2":
 					System.out.println("Returning to previous selection...");
 					break;
 				default:
@@ -115,7 +115,7 @@ public class UserUtility {
 					break;
 				}
 				break;
-			case 3:
+			case "3":
 				System.out.println("***** Checkout Book *****\n");
 				System.out.println("Here is what's in your cart\n");
 				int userId = Integer.parseInt(service.getUserIdByUsername(userName));

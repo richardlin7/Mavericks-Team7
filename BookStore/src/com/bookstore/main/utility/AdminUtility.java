@@ -33,15 +33,15 @@ public class AdminUtility {
 			System.out.println("0. Log Out");
 
 			System.out.println("Hi " + adminUserName.toUpperCase() + ", Please select the opreation: ");
-			int index = sc.nextInt();
+			String index = sc.next();
 
-			if (index == 0) {
+			if (index.equals("0")) {
 				System.out.println("Logout..Returining to the menu.");
 				break;
 			}
 
 			switch (index) {
-			case 1:
+			case "1":
 				System.out.println("***** Add Book *****");
 
 				System.out.println("Enter Book Name: ");
@@ -136,7 +136,7 @@ public class AdminUtility {
 				System.out.println(" The book " + bookName + " added Sucessfully!!!");
 
 				break;
-			case 2:
+			case "2":
 				System.out.println("*****Delete Book*****");
 				System.out.println("List of all Available Books");
 				
@@ -152,7 +152,7 @@ public class AdminUtility {
 				}
 				bookService.removeBook(bid);
 				break;
-			case 3:
+			case "3":
 				System.out.println("*****Update Book*****");
 				
 				System.out.println("List of all Available Books");
@@ -188,7 +188,7 @@ public class AdminUtility {
 				
 				bookService.updateBook(books);
 				break;
-			case 4:
+			case "4":
 				//System.out.println("4. View Users");
 				//To Do
 				List<User> list1 = service.fetchUsers();
@@ -197,7 +197,7 @@ public class AdminUtility {
 				 }
 
 				break;
-			case 5:
+			case "5":
 				//System.out.println("5. Delete User");
 				//To Do
 				System.out.println("Enter User ID");
@@ -212,7 +212,7 @@ public class AdminUtility {
 				 }
 
 				break;
-			case 6:
+			case "6":
 				//To Do
 				System.out.println("***** The Collections of Books *****");
 				System.out.println(" ");
