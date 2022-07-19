@@ -29,7 +29,7 @@ public class UserController {
 	
 	
 	//Save Users
-	@PostMapping("/register/user")
+	@PostMapping("/user")
 	public void registerUser(@RequestBody User user) {
 		
 		 userRepository.save(user);
@@ -37,7 +37,7 @@ public class UserController {
 	}
 	
 	//Delete User by ID
-	@DeleteMapping("/user/delete/{id}")
+	@DeleteMapping("/user/{id}")
 	public void deleteUserById(@PathVariable("id") Long id) {
 		
 		userRepository.deleteById(id);

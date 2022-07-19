@@ -19,7 +19,7 @@ public class AdminController {
 	@Autowired
 	private AdminRepository adminRepository;
 
-	@PostMapping("/register/admin")
+	@PostMapping("/admin")
 	public void registerAdmin(@RequestBody Admin admin) {
 
 		adminRepository.save(admin);
@@ -36,7 +36,7 @@ public class AdminController {
 
 	
 	//Delete admin by ID
-	@DeleteMapping("/admin/delete/{id}")
+	@DeleteMapping("/admin/{id}")
 	public void deleteAdminById(@PathVariable("id") Long id) {
 		adminRepository.deleteById(id);
 	}
