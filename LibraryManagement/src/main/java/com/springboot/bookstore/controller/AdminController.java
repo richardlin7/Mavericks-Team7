@@ -25,7 +25,7 @@ public class AdminController {
 	@Autowired
 	private LocationRepository locationRepository;
 
-	// Inserting Admin
+	// Inserting new Admin
 	@PostMapping("/admin/{lId}")
 	public void registerAdmin(@RequestBody Admin admin, @PathVariable("lId") Long lId) {
 		
@@ -48,6 +48,20 @@ public class AdminController {
 
 		return list;
 	}
+	
+	//Show Admin info by ID
+	
+	@GetMapping("/admin/{id}")
+	public Admin showEachAdminById(@PathVariable("id") Long id) {
+		Optional<Admin> opt = adminRepository.findById(id);
+		if (!opt.isPresent()) {
+			throw new RuntimeException("ID Invalid");
+		}
+		Admin admin = opt.get();
+		return admin;
+	}
+	
+	
 
 	// Delete admin by ID
 	@DeleteMapping("/admin/{id}")
@@ -57,8 +71,11 @@ public class AdminController {
 		if (!opt.isPresent()) {
 			throw new RuntimeException("ID Invalid");
 		}
+		Admin admin = opt.get();
+		
+		adminRepository.delete(admin);
 
-		adminRepository.deleteById(id);
+		
 	}
 
 	// Update Admin by adminID

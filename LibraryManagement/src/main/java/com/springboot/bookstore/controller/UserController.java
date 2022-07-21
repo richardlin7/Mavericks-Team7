@@ -22,7 +22,7 @@ public class UserController {
 
 	@Autowired
 	private UserRepository userRepository;
-	
+
 	@Autowired
 	private LocationRepository locationRepository;
 
@@ -33,16 +33,29 @@ public class UserController {
 
 	}
 
+	// Show User info by ID
+
+	@GetMapping("/user/{id}")
+	public User showEachUserById(@PathVariable("id") Long id) {
+		Optional<User> opt = userRepository.findById(id);
+		if (!opt.isPresent()) {
+			throw new RuntimeException("ID Invalid");
+		}
+		User user = opt.get();
+
+		return user;
+	}
+
 	// Insert Users
 	@PostMapping("/user/{lId}")
 	public void registerUser(@RequestBody User user, @PathVariable("lId") Long lId) {
-		
+
 		Optional<Location> opt = locationRepository.findById(lId);
 		if (!opt.isPresent()) {
 			throw new RuntimeException("Location Id Invalid");
 		}
-		Location location=opt.get();
-		
+		Location location = opt.get();
+
 		user.setLocation(location);
 
 		userRepository.save(user);
@@ -58,25 +71,26 @@ public class UserController {
 			throw new RuntimeException("ID Invalid");
 		}
 
-		userRepository.deleteById(id);
+		User user = opt.get();
+		userRepository.delete(user);
 
 	}
-	
-	//Update user by ID
+
+	// Update user by ID
 	@PutMapping("/user/{id}/{lId}")
-	public User updateUserById(@RequestBody User newUser, @PathVariable("id") Long id,@PathVariable("lId") Long lId) {
-		//Checking if ID is present
+	public User updateUserById(@RequestBody User newUser, @PathVariable("id") Long id, @PathVariable("lId") Long lId) {
+		// Checking if ID is present
 		Optional<User> opt = userRepository.findById(id);
-		if(!opt.isPresent()) {
+		if (!opt.isPresent()) {
 			throw new RuntimeException("ID Invalid");
 		}
-		
+
 		Optional<Location> opt1 = locationRepository.findById(lId);
-		if(!opt1.isPresent()) {
+		if (!opt1.isPresent()) {
 			throw new RuntimeException("Location ID Invalid");
 		}
 		Location location = opt1.get();
-		
+
 		User user = opt.get();
 		user.setFirst_name(newUser.getFirst_name());
 		user.setLast_name(newUser.getLast_name());
@@ -84,10 +98,9 @@ public class UserController {
 		user.setUsername(newUser.getUsername());
 		user.setPhone(newUser.getPhone());
 		user.setLocation(location);
-		
+
 		return userRepository.save(user);
-		
+
 	}
-	
 
 }
