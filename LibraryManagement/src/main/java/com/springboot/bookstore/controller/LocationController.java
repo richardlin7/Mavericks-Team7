@@ -22,8 +22,8 @@ public class LocationController {
 	
 	//Insert new location to DB
 	@PostMapping("/address")
-	public void addNewAddress(@RequestBody Location address) {
-		locationRepository.save(address);
+	public Location addNewAddress(@RequestBody Location address) {
+		return locationRepository.save(address);
 	}
 	
 	//Display All the location
@@ -63,6 +63,7 @@ public class LocationController {
 		location.setCity_name(newLocation.getCity_name());
 		location.setStreet_name(newLocation.getStreet_name());
 		location.setZip_code(newLocation.getZip_code());
+		location.setState(newLocation.getState());
 		
 		return locationRepository.save(location);
 		

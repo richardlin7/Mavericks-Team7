@@ -1,5 +1,6 @@
 package com.springboot.bookstore.controller;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,7 +28,7 @@ public class AdminController {
 
 	// Inserting new Admin
 	@PostMapping("/admin/{lId}")
-	public void registerAdmin(@RequestBody Admin admin, @PathVariable("lId") Long lId) {
+	public Admin registerAdmin(@RequestBody Admin admin, @PathVariable("lId") Long lId) {
 		
 		Optional<Location> opt = locationRepository.findById(lId);
 		if (!opt.isPresent()) {
@@ -36,8 +37,9 @@ public class AdminController {
 		Location location =opt.get();
 		
 		admin.setLocation(location);
+		admin.setDate(LocalDate.now());
 
-		adminRepository.save(admin);
+		return adminRepository.save(admin);
 
 	}
 
@@ -101,6 +103,9 @@ public class AdminController {
 		admin.setUsername(newAdmin.getUsername());
 		admin.setPhone(newAdmin.getPhone());
 		admin.setLocation(location);
+		
+		//Don't update date when existing admin's info changed
+		//admin.setDate(LocalDate.now());
 
 		return adminRepository.save(admin);
 	}

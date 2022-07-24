@@ -1,5 +1,6 @@
 package com.springboot.bookstore.controller;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -48,7 +49,7 @@ public class UserController {
 
 	// Insert Users
 	@PostMapping("/user/{lId}")
-	public void registerUser(@RequestBody User user, @PathVariable("lId") Long lId) {
+	public User registerUser(@RequestBody User user, @PathVariable("lId") Long lId) {
 
 		Optional<Location> opt = locationRepository.findById(lId);
 		if (!opt.isPresent()) {
@@ -57,8 +58,9 @@ public class UserController {
 		Location location = opt.get();
 
 		user.setLocation(location);
+		user.setDate(LocalDate.now());
 
-		userRepository.save(user);
+		return userRepository.save(user);
 
 	}
 
@@ -102,5 +104,8 @@ public class UserController {
 		return userRepository.save(user);
 
 	}
+	
+	//Get User By State
+	
 
 }

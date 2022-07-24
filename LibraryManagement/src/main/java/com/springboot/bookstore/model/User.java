@@ -1,5 +1,7 @@
 package com.springboot.bookstore.model;
 
+import java.time.LocalDate;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -26,6 +28,8 @@ public class User {
 	private String username;
 	@Column(nullable = false)
 	private String password;
+	@Column(name = "registered_date")
+	private LocalDate date;
 	@OneToOne
 	private Location location;
 	public User() {
@@ -33,7 +37,7 @@ public class User {
 		// TODO Auto-generated constructor stub
 	}
 	public User(Long user_id, String first_name, String last_name, String phone, String username, String password,
-			Location location) {
+			LocalDate date, Location location) {
 		super();
 		this.user_id = user_id;
 		this.first_name = first_name;
@@ -41,6 +45,7 @@ public class User {
 		this.phone = phone;
 		this.username = username;
 		this.password = password;
+		this.date = date;
 		this.location = location;
 	}
 	public Long getUser_id() {
@@ -79,6 +84,12 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	public LocalDate getDate() {
+		return date;
+	}
+	public void setDate(LocalDate date) {
+		this.date = date;
+	}
 	public Location getLocation() {
 		return location;
 	}
@@ -88,8 +99,10 @@ public class User {
 	@Override
 	public String toString() {
 		return "User [user_id=" + user_id + ", first_name=" + first_name + ", last_name=" + last_name + ", phone="
-				+ phone + ", username=" + username + ", password=" + password + ", location=" + location + "]";
+				+ phone + ", username=" + username + ", password=" + password + ", date=" + date + ", location="
+				+ location + "]";
 	}
+	
 	
 	
 	

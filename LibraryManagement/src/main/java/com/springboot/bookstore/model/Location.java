@@ -20,18 +20,22 @@ public class Location {
 	private String city_name;
 	
 	@Column(nullable = false)
-	private Integer zip_code;
+	private String state;
 	
+	@Column(nullable = false)
+	private Integer zip_code;
+
 	public Location() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Location(Long id, String street_name, String city_name, Integer zip_code) {
+	public Location(Long id, String street_name, String city_name, String state, Integer zip_code) {
 		super();
 		this.id = id;
 		this.street_name = street_name;
 		this.city_name = city_name;
+		this.state = state;
 		this.zip_code = zip_code;
 	}
 
@@ -59,6 +63,14 @@ public class Location {
 		this.city_name = city_name;
 	}
 
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
 	public Integer getZip_code() {
 		return zip_code;
 	}
@@ -69,9 +81,10 @@ public class Location {
 
 	@Override
 	public String toString() {
-		return "Location [id=" + id + ", street_name=" + street_name + ", city_name=" + city_name + ", zip_code="
-				+ zip_code + "]";
+		return "Location [id=" + id + ", street_name=" + street_name + ", city_name=" + city_name + ", state=" + state
+				+ ", zip_code=" + zip_code + "]";
 	}
+	
 	
 	
 	
