@@ -104,8 +104,16 @@ public class UserController {
 		return userRepository.save(user);
 
 	}
-	
-	//Get User By State
-	
+
+	// Get User By State
+
+	@GetMapping("/user/state/{state}")
+	public List<User> getUserByState(@PathVariable("state") String state) {
+
+		List<User> list = userRepository.getUserByState(state);
+
+		return list;
+
+	}
 
 }
