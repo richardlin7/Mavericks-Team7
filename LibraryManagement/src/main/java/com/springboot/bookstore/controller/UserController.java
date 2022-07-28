@@ -94,8 +94,8 @@ public class UserController {
 		Location location = opt1.get();
 
 		User user = opt.get();
-		user.setFirst_name(newUser.getFirst_name());
-		user.setLast_name(newUser.getLast_name());
+		user.setFirstName(newUser.getFirstName());
+		user.setLastName(newUser.getLastName());
 		user.setPassword(newUser.getPassword());
 		user.setUsername(newUser.getUsername());
 		user.setPhone(newUser.getPhone());
