@@ -97,8 +97,8 @@ public class AdminController {
 		
 		Admin admin = opt.get();
 
-		admin.setFirst_name(newAdmin.getFirst_name());
-		admin.setLast_name(newAdmin.getLast_name());
+		admin.setFirstName(newAdmin.getFirstName());
+		admin.setLastName(newAdmin.getLastName());
 		admin.setPassword(newAdmin.getPassword());
 		admin.setUsername(newAdmin.getUsername());
 		admin.setPhone(newAdmin.getPhone());

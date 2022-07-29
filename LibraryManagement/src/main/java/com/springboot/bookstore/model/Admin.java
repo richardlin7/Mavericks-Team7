@@ -19,9 +19,9 @@ public class Admin {
 	private Long admin_id;
 	
 	@Column(nullable = false)
-	private String first_name;
+	private String firstName;
 	@Column(nullable = false)
-	private String last_name;
+	private String lastName;
 	@Column(nullable = false)
 	private String phone;
 	@Column(nullable = false)
@@ -40,12 +40,12 @@ public class Admin {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Admin(Long admin_id, String first_name, String last_name, String phone, String username, String password,
+	public Admin(Long admin_id, String firstName, String lastName, String phone, String username, String password,
 			LocalDate date, Location location) {
 		super();
 		this.admin_id = admin_id;
-		this.first_name = first_name;
-		this.last_name = last_name;
+		this.firstName = firstName;
+		this.lastName = lastName;
 		this.phone = phone;
 		this.username = username;
 		this.password = password;
@@ -61,20 +61,20 @@ public class Admin {
 		this.admin_id = admin_id;
 	}
 
-	public String getFirst_name() {
-		return first_name;
+	public String getFirstName() {
+		return firstName;
 	}
 
-	public void setFirst_name(String first_name) {
-		this.first_name = first_name;
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
 
-	public String getLast_name() {
-		return last_name;
+	public String getLastName() {
+		return lastName;
 	}
 
-	public void setLast_name(String last_name) {
-		this.last_name = last_name;
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
 
 	public String getPhone() {
@@ -119,11 +119,12 @@ public class Admin {
 
 	@Override
 	public String toString() {
-		return "Admin [admin_id=" + admin_id + ", first_name=" + first_name + ", last_name=" + last_name + ", phone="
+		return "Admin [admin_id=" + admin_id + ", firstName=" + firstName + ", lastName=" + lastName + ", phone="
 				+ phone + ", username=" + username + ", password=" + password + ", date=" + date + ", location="
 				+ location + "]";
 	}
 
+	
 	
 
 }

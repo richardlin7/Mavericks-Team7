@@ -19,9 +19,9 @@ public class User {
 	private Long user_id;
 	
 	@Column(nullable = false)
-	private String first_name;
+	private String firstName;
 	@Column(nullable = false)
-	private String last_name;
+	private String lastName;
 	@Column(nullable = false)
 	private String phone;
 	@Column(nullable = false)
@@ -36,12 +36,12 @@ public class User {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public User(Long user_id, String first_name, String last_name, String phone, String username, String password,
+	public User(Long user_id, String firstName, String lastName, String phone, String username, String password,
 			LocalDate date, Location location) {
 		super();
 		this.user_id = user_id;
-		this.first_name = first_name;
-		this.last_name = last_name;
+		this.firstName = firstName;
+		this.lastName = lastName;
 		this.phone = phone;
 		this.username = username;
 		this.password = password;
@@ -54,17 +54,17 @@ public class User {
 	public void setUser_id(Long user_id) {
 		this.user_id = user_id;
 	}
-	public String getFirst_name() {
-		return first_name;
+	public String getFirstName() {
+		return firstName;
 	}
-	public void setFirst_name(String first_name) {
-		this.first_name = first_name;
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
-	public String getLast_name() {
-		return last_name;
+	public String getLastName() {
+		return lastName;
 	}
-	public void setLast_name(String last_name) {
-		this.last_name = last_name;
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
 	public String getPhone() {
 		return phone;
@@ -98,10 +98,11 @@ public class User {
 	}
 	@Override
 	public String toString() {
-		return "User [user_id=" + user_id + ", first_name=" + first_name + ", last_name=" + last_name + ", phone="
-				+ phone + ", username=" + username + ", password=" + password + ", date=" + date + ", location="
-				+ location + "]";
+		return "User [user_id=" + user_id + ", firstName=" + firstName + ", lastName=" + lastName + ", phone=" + phone
+				+ ", username=" + username + ", password=" + password + ", date=" + date + ", location=" + location
+				+ "]";
 	}
+	
 	
 	
 	
