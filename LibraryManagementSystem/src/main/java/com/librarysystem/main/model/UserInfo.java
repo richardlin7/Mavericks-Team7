@@ -29,6 +29,14 @@ public class UserInfo {
 	@Column(nullable = false)
 	private String password;
 	@Column(nullable = false)
+	private String securityQuestion1;
+	@Column(nullable = false)
+	private String securityQuestion2;
+	@Column(nullable = false)
+	private String securityAnswer1;
+	@Column(nullable = false)
+	private String securityAnswer2;
+	@Column(nullable = false)
 	private LocalDate registerDate;
 	@Enumerated
 	private Role role;
@@ -39,6 +47,7 @@ public class UserInfo {
 		// TODO Auto-generated constructor stub
 	}
 	public UserInfo(Long id, String firstName, String lastName, String phone, String username, String password,
+			String securityQuestion1, String securityQuestion2, String securityAnswer1, String securityAnswer2,
 			LocalDate registerDate, Role role, Address address) {
 		super();
 		this.id = id;
@@ -47,6 +56,10 @@ public class UserInfo {
 		this.phone = phone;
 		this.username = username;
 		this.password = password;
+		this.securityQuestion1 = securityQuestion1;
+		this.securityQuestion2 = securityQuestion2;
+		this.securityAnswer1 = securityAnswer1;
+		this.securityAnswer2 = securityAnswer2;
 		this.registerDate = registerDate;
 		this.role = role;
 		this.address = address;
@@ -87,6 +100,30 @@ public class UserInfo {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	public String getSecurityQuestion1() {
+		return securityQuestion1;
+	}
+	public void setSecurityQuestion1(String securityQuestion1) {
+		this.securityQuestion1 = securityQuestion1;
+	}
+	public String getSecurityQuestion2() {
+		return securityQuestion2;
+	}
+	public void setSecurityQuestion2(String securityQuestion2) {
+		this.securityQuestion2 = securityQuestion2;
+	}
+	public String getSecurityAnswer1() {
+		return securityAnswer1;
+	}
+	public void setSecurityAnswer1(String securityAnswer1) {
+		this.securityAnswer1 = securityAnswer1;
+	}
+	public String getSecurityAnswer2() {
+		return securityAnswer2;
+	}
+	public void setSecurityAnswer2(String securityAnswer2) {
+		this.securityAnswer2 = securityAnswer2;
+	}
 	public LocalDate getRegisterDate() {
 		return registerDate;
 	}
@@ -108,10 +145,10 @@ public class UserInfo {
 	@Override
 	public String toString() {
 		return "UserInfo [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", phone=" + phone
-				+ ", username=" + username + ", password=" + password + ", registerDate=" + registerDate + ", role="
-				+ role + ", address=" + address + "]";
+				+ ", username=" + username + ", password=" + password + ", securityQuestion1=" + securityQuestion1
+				+ ", securityQuestion2=" + securityQuestion2 + ", securityAnswer1=" + securityAnswer1
+				+ ", securityAnswer2=" + securityAnswer2 + ", registerDate=" + registerDate + ", role=" + role
+				+ ", address=" + address + "]";
 	}
 	
-	
-
 }
