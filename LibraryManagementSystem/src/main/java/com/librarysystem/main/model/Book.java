@@ -2,6 +2,7 @@ package com.librarysystem.main.model;
 
 import java.time.LocalDate;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Enumerated;
@@ -26,11 +27,11 @@ public class Book {
 	private String bookDescription;
 	@Column(nullable = false)
 	private LocalDate listedDate;
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	private Author author;
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	private Category category;
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	private Library library;
 	@OneToOne
 	private UserInfo userInfo;
