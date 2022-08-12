@@ -24,6 +24,7 @@ public class UserInfo {
 	private String lastName;
 	@Column(nullable = false)
 	private String phone;
+	private LocalDate passwordLastReset;
 	@Column(nullable = false)
 	private String username;
 	@Column(nullable = false)
@@ -69,6 +70,12 @@ public class UserInfo {
 	}
 	public void setId(Long id) {
 		this.id = id;
+	}
+	public LocalDate getPasswordLastReset() {
+		return passwordLastReset;
+	}
+	public void setPasswordLastReset(LocalDate passwordLastReset) {
+		this.passwordLastReset = passwordLastReset;
 	}
 	public String getFirstName() {
 		return firstName;
@@ -150,5 +157,6 @@ public class UserInfo {
 				+ ", securityAnswer2=" + securityAnswer2 + ", registerDate=" + registerDate + ", role=" + role
 				+ ", address=" + address + "]";
 	}
+	
 	
 }
