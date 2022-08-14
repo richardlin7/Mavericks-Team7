@@ -1,21 +1,28 @@
 package com.librarysystem.main.controller;
 
+
 import java.security.Principal;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.librarysystem.main.dto.AdminLoginDto;
+import com.librarysystem.main.dto.AllUserDisplayDto;
 import com.librarysystem.main.dto.UserEditDto;
 import com.librarysystem.main.dto.UserInfoDto;
 import com.librarysystem.main.dto.UserLoginDto;
@@ -38,10 +45,61 @@ public class UserInfoController {
 	
 	
 	@GetMapping("/user")
-	public List<UserInfo> getAllUserInfo() {
-		return userInfoRepository.findAll();
+	public List<AllUserDisplayDto> getAllUserInfo(
+			@RequestParam(name="page", required = false, defaultValue = "0") Integer page,
+			@RequestParam(name="size",required=false,defaultValue = "1000") Integer size) 
+	{
 		
+		if(page < 0)
+			page=0;
+		
+		Pageable pageable = PageRequest.of(page, size);
+		
+		List<UserInfo> list =  userInfoRepository.findAll(pageable).getContent();
+		List<AllUserDisplayDto> allUsers = new ArrayList<>();
+		
+		
+		
+		String streetName = "";
+		String cityName = "";
+		String state="";		
+		Integer zipCode= 0000;
+		
+		for (UserInfo u : list) {
+			
+			AllUserDisplayDto allUser = new AllUserDisplayDto();
+			if (u.getAddress()== null) {
+				
+				Address address = new Address();
+				
+				address.setCityName(cityName);
+				address.setState(state);
+				address.setStreetName(streetName);
+				address.setZipCode(zipCode);
+				addressRepository.save(address);
+				
+				u.setAddress(address);
+				
+			}
+			
+			allUser.setFirstName(u.getFirstName());
+			allUser.setLastName(u.getLastName());
+			allUser.setId(u.getId());
+			allUser.setCityName(u.getAddress().getCityName());
+			allUser.setPhone(u.getPhone());
+			allUser.setState(u.getAddress().getState());
+			allUser.setStreetName(u.getAddress().getStreetName());
+			allUser.setUsername(u.getUsername());
+			allUser.setZipCode(u.getAddress().getZipCode());
+			allUsers.add(allUser);
+			
+		}
+		return allUsers;
+	
 	}
+	
+	
+	
 	
 	@PostMapping("/user/sign-up")
 	public void signUpUser(@RequestBody UserInfoDto dto) {
