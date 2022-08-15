@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.function.EntityResponse;
 
 import com.librarysystem.main.dto.AdminLoginDto;
 import com.librarysystem.main.dto.AllUserDisplayDto;
@@ -45,7 +47,7 @@ public class UserInfoController {
 	
 	
 	@GetMapping("/user")
-	public List<AllUserDisplayDto> getAllUserInfo(
+	public ResponseEntity<List<AllUserDisplayDto>> getAllUserInfo(
 			@RequestParam(name="page", required = false, defaultValue = "0") Integer page,
 			@RequestParam(name="size",required=false,defaultValue = "1000") Integer size) 
 	{
@@ -57,6 +59,7 @@ public class UserInfoController {
 		
 		List<UserInfo> list =  userInfoRepository.findAll(pageable).getContent();
 		List<AllUserDisplayDto> allUsers = new ArrayList<>();
+		
 		
 		
 		
@@ -94,8 +97,36 @@ public class UserInfoController {
 			allUsers.add(allUser);
 			
 		}
-		return allUsers;
+		return ResponseEntity.ok( allUsers);
 	
+	}
+	
+	@GetMapping("/user/{id}")
+	public AllUserDisplayDto getUserDetailsById(@PathVariable("id") Long id) {
+		
+		Optional<UserInfo> opt = userInfoRepository.findById(id);
+		
+		if (!opt.isPresent()) {
+			throw new RuntimeException("User Id invalid..");
+			
+		}
+		
+		UserInfo u = opt.get();
+		
+		AllUserDisplayDto dto = new AllUserDisplayDto();
+		dto.setCityName(u.getAddress().getCityName());
+		dto.setFirstName(u.getFirstName());
+		dto.setLastName(u.getLastName());
+		dto.setPhone(u.getPhone());
+		dto.setState(u.getAddress().getState());
+		dto.setStreetName(u.getAddress().getStreetName());
+		dto.setZipCode(u.getAddress().getZipCode());
+		dto.setId(u.getId());
+		dto.setUsername(u.getUsername());
+		dto.setRegisterDate(u.getRegisterDate());
+		
+		return dto;
+		
 	}
 	
 	
@@ -302,20 +333,7 @@ public class UserInfoController {
 		
 		userInfoRepository.save(info);
 
-//		userInfoRepository.updateProfile(
-//				username,
-//				dto.getFirstName(),
-//				dto.getLastName(),
-//				dto.getPhone(),
-//				dto.getSecurityQuestion1(),
-//				dto.getSecurityQuestion2(),
-//				dto.getSecurityAnswer1(),
-//				dto.getSecurityAnswer2(),
-//				dto.getStreetName(),
-//				dto.getCityName(),
-//				dto.getState(),
-//				dto.getZipCode()
-//				);
+
 	}
 
 

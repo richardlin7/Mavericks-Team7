@@ -1,5 +1,7 @@
 package com.librarysystem.main.dto;
 
+import java.time.LocalDate;
+
 public class AllUserDisplayDto {
 	
 	private Long id;
@@ -9,6 +11,13 @@ public class AllUserDisplayDto {
 	private String username;
 	private String streetName;
 	private String cityName;
+	private LocalDate registerDate;
+	public LocalDate getRegisterDate() {
+		return registerDate;
+	}
+	public void setRegisterDate(LocalDate registerDate) {
+		this.registerDate = registerDate;
+	}
 	private String state;
 	private Integer zipCode;
 	public Long getId() {
