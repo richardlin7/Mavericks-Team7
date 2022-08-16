@@ -123,7 +123,10 @@ public class UserInfoController {
 		dto.setZipCode(u.getAddress().getZipCode());
 		dto.setId(u.getId());
 		dto.setUsername(u.getUsername());
+		dto.setRole(u.getRole().toString());
 		dto.setRegisterDate(u.getRegisterDate());
+		
+		System.out.println(dto.getRole());
 		
 		return dto;
 		
