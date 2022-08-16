@@ -2,8 +2,6 @@ package com.librarysystem.main.dto;
 
 import java.time.LocalDate;
 
-import javax.persistence.Column;
-
 import com.librarysystem.main.emuns.Role;
 
 

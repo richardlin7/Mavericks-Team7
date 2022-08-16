@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.librarysystem.main.dto.AddUserDto;
 import com.librarysystem.main.dto.AdminLoginDto;
 import com.librarysystem.main.dto.AllUserDisplayDto;
 import com.librarysystem.main.dto.UserEditDto;
@@ -47,7 +48,7 @@ public class UserInfoController {
 	private PasswordEncoder passwordEncoder;
 	
 	
-	
+	//Get all user informations
 	@GetMapping("/user")
 	public ResponseEntity<List<AllUserDisplayDto>> getAllUserInfo(
 			@RequestParam(name="page", required = false, defaultValue = "0") Integer page,
@@ -103,6 +104,8 @@ public class UserInfoController {
 	
 	}
 	
+	
+	//get user by id
 	@GetMapping("/user/{id}")
 	public AllUserDisplayDto getUserDetailsById(@PathVariable("id") Long id) {
 		
@@ -131,6 +134,46 @@ public class UserInfoController {
 		System.out.println(dto.getRole());
 		
 		return dto;
+		
+	}
+	
+	
+	
+	//insertUserInfo
+	@PostMapping("/user")
+	public UserInfo insertUserInfo(@RequestBody AddUserDto addUserDto) {
+		
+		//List<UserInfo> info = userInfoRepository.findAll();
+		
+		
+		//Default username = firstname2022
+		//Default password=state+zipcode
+		
+		String username = addUserDto.getFirstName().concat("2022").toLowerCase();
+		String password = passwordEncoder.encode(addUserDto.getState().concat(addUserDto.getZipCode().toString()));
+		
+		Address address = new Address();
+		
+		address.setCityName(addUserDto.getCityName());
+		address.setState(addUserDto.getState());
+		address.setStreetName(addUserDto.getStreetName());
+		address.setZipCode(addUserDto.getZipCode());
+		//addressRepository.save(address);
+		
+		UserInfo info = new UserInfo();
+		info.setAddress(address);
+		info.setFirstName(addUserDto.getFirstName());
+		info.setLastName(addUserDto.getLastName());
+		info.setUsername(username);
+		info.setPassword(password);
+		info.setRegisterDate(LocalDate.now());
+		info.setRole(addUserDto.getRole());
+		info.setPhone(addUserDto.getPhone());
+		
+	 return	userInfoRepository.save(info);
+		
+		
+		
 		
 	}
 	
@@ -369,6 +412,7 @@ public class UserInfoController {
 		
 		
 	}
+
 
 
 }
