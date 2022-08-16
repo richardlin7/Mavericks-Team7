@@ -5,11 +5,13 @@ import java.security.Principal;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Base64;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
@@ -21,7 +23,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.function.EntityResponse;
 
 import com.librarysystem.main.dto.AdminLoginDto;
 import com.librarysystem.main.dto.AllUserDisplayDto;
@@ -30,6 +31,7 @@ import com.librarysystem.main.dto.UserInfoDto;
 import com.librarysystem.main.dto.UserLoginDto;
 import com.librarysystem.main.dto.UserProfileEditDto;
 import com.librarysystem.main.dto.UsersDto;
+import com.librarysystem.main.dto.UsersStatDto;
 import com.librarysystem.main.model.Address;
 import com.librarysystem.main.model.UserInfo;
 import com.librarysystem.main.repository.AddressRepository;
@@ -337,6 +339,35 @@ public class UserInfoController {
 		userInfoRepository.save(info);
 
 
+	}
+	//http://localhost:8080/user/stats
+	
+	@GetMapping("/user/stats")
+	public List<UsersStatDto> getUsersStats() {
+		
+		List<UserInfo> list = userInfoRepository.findAll();
+		
+		List<UsersStatDto> listDto = new ArrayList<>();
+		
+		Map<String, Integer> statMap = new HashMap<>();
+		
+		Map<String, List<UserInfo>> map = list.stream().collect(Collectors.groupingBy(e->e.getRole().toString()));
+		
+		for(Map.Entry<String, List<UserInfo>> e: map.entrySet()) {
+			UsersStatDto dto = new UsersStatDto();
+			
+			dto.setRole(e.getKey());
+			dto.setCount(e.getValue().size());
+			listDto.add(dto);
+			
+		}
+		System.out.println(listDto);
+				
+		return listDto;
+		
+		
+		
+		
 	}
 
 
