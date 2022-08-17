@@ -9,6 +9,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
+import com.librarysystem.main.model.Address;
 import com.librarysystem.main.model.UserInfo;
 
 public interface UserInfoRepository extends JpaRepository<UserInfo, Long> {
@@ -27,6 +28,14 @@ public interface UserInfoRepository extends JpaRepository<UserInfo, Long> {
 	@Modifying
 	@Query("update UserInfo u SET u.password=?2,u.passwordLastReset=?3 where u.username=?1")
 	void resetPassword(String username, String encodedPassword, LocalDate date);
+
+//	
+//	@Transactional
+//	@Modifying
+//	@Query("delete from UserInfo u where u.id?=1 and u.address?=2")
+//	void deleteUserById(Long uId, Address address);
+
+//	void deleteUserById(Long uId, Address address);
 
 	
 //	@Transactional
