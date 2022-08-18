@@ -9,7 +9,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
-import com.librarysystem.main.model.Address;
 import com.librarysystem.main.model.UserInfo;
 
 public interface UserInfoRepository extends JpaRepository<UserInfo, Long> {

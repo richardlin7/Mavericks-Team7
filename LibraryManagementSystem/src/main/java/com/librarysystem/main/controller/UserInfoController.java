@@ -98,31 +98,56 @@ public class UserInfoController {
 		return ResponseEntity.ok(allUsers);
 
 	}
-	
+
+	@GetMapping("/full-name/{name}")
+	public String getFullUserName(@PathVariable("name") String name) {
+
+		Optional<UserInfo> info = userInfoRepository.findByUsername(name);
+
+		if (info.isEmpty()) {
+			throw new RuntimeException("User not found");
+		}
+
+		UserInfo u = info.get();
+
+		String fullName = u.getFirstName() + " " + u.getLastName();
+
+		return fullName;
+	}
+
 	@DeleteMapping("/users/{uId}")
 	public void deleteUserById(@PathVariable("uId") Long uId) {
-		
+
 		Optional<UserInfo> opt = userInfoRepository.findById(uId);
-		
+
 		if (opt.isEmpty()) {
 			throw new RuntimeException("User Id Invalid..");
 		}
 		UserInfo u = opt.get();
-		
+
+//		Optional<Address> optA = addressRepository.findById(u.getAddress().getId());
+
+		if (u.getAddress() == null) {
+			Address a = new Address();
+			a.setCityName(" ");
+			a.setState(" ");
+			a.setStreetName(" ");
+			a.setZipCode(0);
+			addressRepository.save(a);
+
+		}
+
 		Address address = u.getAddress();
-		
+
 		addressRepository.delete(address);
-		//userInfoRepository.deleteUserById(uId,address);
-		
+		// userInfoRepository.deleteUserById(uId,address);
+
 		System.out.println(u);
-		//addressRepository.deleteById(u.getAddress().getId());
-		
+		// addressRepository.deleteById(u.getAddress().getId());
+
 		userInfoRepository.deleteById(uId);
-		
+
 	}
-	
-	
-	
 
 	// get user by id
 	@GetMapping("/user/{id}")
@@ -160,11 +185,6 @@ public class UserInfoController {
 	@PostMapping("/user")
 	public UserInfo insertUserInfo(@RequestBody AddUserDto addUserDto) {
 
-		// List<UserInfo> info = userInfoRepository.findAll();
-
-		// Default username = firstname2022
-		// Default password=state+zipcode
-
 		String username = addUserDto.getFirstName().concat("2022").toLowerCase();
 		String password = passwordEncoder.encode(addUserDto.getState().concat(addUserDto.getZipCode().toString()));
 
@@ -193,6 +213,8 @@ public class UserInfoController {
 	@PostMapping("/user/sign-up")
 	public void signUpUser(@RequestBody UserInfoDto dto) {
 
+		String addressUpdate = "update";
+
 		String str = new String(Base64.getDecoder().decode(dto.getEncodedCredentials()));
 		String[] sarr = str.split("@%");
 
@@ -204,6 +226,13 @@ public class UserInfoController {
 		System.out.println(uInfo);
 
 		if (uInfo == null) {
+
+			Address a = new Address();
+			a.setCityName(addressUpdate);
+			a.setState(addressUpdate);
+			a.setStreetName(addressUpdate);
+			a.setZipCode(23228);
+			addressRepository.save(a);
 
 			UserInfo info = new UserInfo();
 
@@ -218,6 +247,7 @@ public class UserInfoController {
 			info.setSecurityAnswer1(dto.getSecurityAnswer1());
 			info.setSecurityQuestion2(dto.getSecurityQuestion2());
 			info.setSecurityAnswer2(dto.getSecurityAnswer2());
+			info.setAddress(a);
 
 			userInfoRepository.save(info);
 
@@ -383,7 +413,8 @@ public class UserInfoController {
 		userInfoRepository.save(info);
 
 	}
-	// http://localhost:8080/user/stats
+
+	// Getting users stats for ADMIN and USERS
 
 	@GetMapping("/user/stats")
 	public List<UsersStatDto> getUsersStats() {
